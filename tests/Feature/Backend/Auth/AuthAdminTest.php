@@ -55,8 +55,8 @@ class AuthAdminTest extends TestCase
     public function test_email_or_password_not_correct()
     {
         $response = $this->postJson('/api/login', [
-            'email' => 'admsin@example.com',
-            'password' => 'password',
+            'email' => 'admsin@gmail.com',
+            'password' => 'passsword',
         ]);
     
         $response->assertStatus(422); 
@@ -66,6 +66,8 @@ class AuthAdminTest extends TestCase
                 'email' => ['Email or password not correct'],
             ],
         ]);
+        dd($response->json());
+
     }
 
     private function createUser(): User

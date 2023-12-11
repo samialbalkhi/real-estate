@@ -17,12 +17,13 @@ class HomePageContentController extends Controller
     public function edit(HomePageContent $homePageContent)
     {
         return response()->json(
-            $this->homePageContentService->edit($homePageContent));
+            $this->homePageContentService->edit($homePageContent)
+        );
     }
 
-    public function update(HomePageContentRequest $request,HomePageContent $homePageContent)
+    public function update(HomePageContentRequest $request, HomePageContent $homePageContent)
     {
-        return response()->json(
-            $this->homePageContentService->update($request,$homePageContent));
+        $this->homePageContentService->update($request, $homePageContent);
+        return response()->json(['message' => 'updated successfully']);
     }
 }

@@ -65,7 +65,7 @@ class HomePageContentTest extends TestCase
     private function createUser()
     {
         return User::factory()->create([
-            'email' => 'admin@gmail.com',
+            'email' => 'admins@gmail.com',
             'password' => 'password',
 
         ]);
