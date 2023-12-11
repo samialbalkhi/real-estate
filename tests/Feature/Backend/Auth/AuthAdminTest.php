@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature\dashbord\Auth;
+namespace Tests\Feature\Backend\Auth;
 
 use Tests\TestCase;
 use App\Models\User;
