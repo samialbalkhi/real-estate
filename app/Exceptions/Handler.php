@@ -3,6 +3,8 @@
 namespace App\Exceptions;
 
 use Throwable;
+use Exception;
+
 use Illuminate\Auth\AuthenticationException;
 use Illuminate\Validation\ValidationException;
 use Illuminate\Auth\Access\AuthorizationException;
@@ -35,6 +37,7 @@ class Handler extends ExceptionHandler
 
     public function render($request, Throwable $e)
     {
+
         if ($e instanceof ModelNotFoundException) {
             return $this->modelNotFoundResponse($e);
         }
@@ -51,7 +54,6 @@ class Handler extends ExceptionHandler
             return $this->validationResponse($e);
         }
 
-        // Default case if none of the specific conditions match
         return response()->data(
             key: 'error',
             message: $e->getMessage(),

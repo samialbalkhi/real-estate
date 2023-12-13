@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\helpers\Helpers;
 use Illuminate\Http\Request;
 use App\Models\HomePageContent;
 use App\Http\Controllers\Controller;
@@ -24,6 +25,7 @@ class HomePageContentController extends Controller
     public function update(HomePageContentRequest $request, HomePageContent $homePageContent)
     {
         $this->homePageContentService->update($request, $homePageContent);
-        return response()->json(['message' => 'updated successfully']);
+        return Helpers::updateSuccessResponse();
+       
     }
 }

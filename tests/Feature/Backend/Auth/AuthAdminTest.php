@@ -11,13 +11,12 @@ class AuthAdminTest extends TestCase
 {
     use RefreshDatabase;
     private User $admin;
-    
+
     public function setUp(): void
     {
         parent::setUp();
         $this->admin = $this->createUser();
     }
-
 
     public function test_user_can_login_via_api_with_valid_credentials(): void
     {
@@ -30,7 +29,7 @@ class AuthAdminTest extends TestCase
         $response->assertStatus(200);
 
         $response->assertJson([
-            'token' => true, 
+            'token' => true,
         ]);
     }
 
@@ -40,8 +39,8 @@ class AuthAdminTest extends TestCase
             'email' => '',
             'password' => '',
         ]);
-    
-        $response->assertStatus(200); 
+
+        $response->assertStatus(200);
         $response->assertJson([
             'success' => false,
             'message' => 'Validation errors',
@@ -51,32 +50,27 @@ class AuthAdminTest extends TestCase
             ],
         ]);
     }
-
-    public function test_email_or_password_not_correct()
+    public function test_incorrect_email_or_password()
     {
         $response = $this->postJson('/api/login', [
-            'email' => 'admsin@gmail.com',
-            'password' => 'passsword',
+            'email' => 'incorrect@email.com',
+            'password' => 'incorrect_password',
         ]);
-    
-        $response->assertStatus(422); 
-        $response->assertJsonFragment([
-            'message' => 'Email or password not correct',
-            'errors' => [
-                'email' => ['Email or password not correct'],
-            ],
-        ]);
-        dd($response->json());
 
+        $response->assertStatus(422)
+            ->assertJson([
+                'key' => 'error',
+                'message' => 'Email or password not correct',
+            ]);
     }
 
     private function createUser(): User
     {
         return User::factory()->create([
-            'name'=>'admin',
+            'name' => 'admin',
             'email' => 'admin@example.com',
             'phone' => '123235465',
-            'confirm_password'=>'123235465',
+            'confirm_password' => '123235465',
             'password' => 'password',
         ]);
     }
