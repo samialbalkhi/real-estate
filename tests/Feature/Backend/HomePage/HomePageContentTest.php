@@ -42,18 +42,17 @@ class HomePageContentTest extends TestCase
             'description' => 'Updated description',
             'image' => UploadedFile::fake()->image('test_image.jpg'),
         ];
-
+    
         $response = $this->actingAs($this->admin)
             ->patchJson("api/update/{$this->create_home_page_content->id}", $updatedData);
-
+    
         $response->assertStatus(200);
-
+    
         $this->create_home_page_content->refresh();
-
+    
         $this->assertEquals($updatedData['description'], $this->create_home_page_content->description);
         $this->assertNotEquals($updatedData['image'], $this->create_home_page_content->image);
     }
-
     private function createFactory()
     {
         return HomePageContent::factory()->create([

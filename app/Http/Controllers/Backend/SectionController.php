@@ -21,7 +21,7 @@ public function __construct(private SectionService $sctionService){}
 
     public function store(SectionRequest $request)
     {
-        return response()->json($this->sctionService->store($request));
+        return response()->json($this->sctionService->store($request),201);
         
     }
 

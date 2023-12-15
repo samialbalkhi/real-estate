@@ -4,12 +4,11 @@ namespace App\Http\Requests\Backend;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SectionRequest extends FormRequest
+class AccountTypeRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -29,25 +28,29 @@ class SectionRequest extends FormRequest
         $rules = [];
 
         $rules = [
-            'name' => ['required', 'unique:sections,name', 'max:30', 'min:3','alpha'],
+            'name' => ['required', 'unique:account_types,name', 'max:30', 'min:3', 'alpha'],
+            'image' => ['required', 'image', 'max:2000'],
             'status' => ['nullable'],
+
         ];
-            
-        if (Request::route()->getName() == 'sections.update') {
-            $rules['name'] = ['required', 'max:30', 'min:3','alpha',
-            Rule::unique('sections', 'name')->ignore($this->section->id)];
+
+        if (Request::route()->getName() == 'accountTypes.update') {
+            $rules['name'] = [
+                'required', 'max:30', 'min:3', 'alpha',
+                Rule::unique('account_types', 'name')->ignore($this->accountType->id)
+            ];
         }
 
         return $rules;
     }
     public function failedValidation(Validator $validator)
-{
-    throw new HttpResponseException(
-        response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors(),
-        ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-    );
-}
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'data' => $validator->errors(),
+            ]),
+        );
+    }
 }
