@@ -9,6 +9,7 @@ use App\Models\Section;
 use App\Models\AccountType;
 use App\Models\RealEstateType;
 use App\Models\HomePageContent;
+use App\Models\Order;
 use Illuminate\Database\Seeder;
 use App\Models\RealEstateCategory;
 
@@ -34,6 +35,8 @@ class DatabaseSeeder extends Seeder
         AccountType::factory(5)->create();
         RealEstateCategory::factory(20)->create();
         RealEstateType::factory(2)->create();
+        Order::factory(10)->create();
+
 
     }
 }

@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\AuthAdminController;
 use App\Http\Controllers\Backend\AccountTypeController;
 use App\Http\Controllers\Backend\HomePageContentController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\RealEstateCategoryController;
 use App\Http\Controllers\RealEstateTypeController;
 
@@ -23,4 +24,9 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::resource('accountTypes', AccountTypeController::class);
     Route::resource('realEstateCategories', RealEstateCategoryController::class);
     Route::get('realEstateTypes', RealEstateTypeController::class);
+
+    Route::prefix('order')->group(function () {
+        Route::get('index', [OrderController::class, 'index']);
+        Route::get('show/{order}', [OrderController::class, 'show']);
+    });
 });
