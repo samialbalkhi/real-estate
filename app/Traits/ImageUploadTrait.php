@@ -17,9 +17,9 @@ trait ImageUploadTrait
 
     public function deleteImage($folder)
     {
-        $imagePath = is_string($folder) ? $folder : $folder->image;
-        if (Storage::exists('public/' . $imagePath)) {
-            Storage::delete('public/' . $imagePath);
+
+        if (Storage::exists('public/' . $folder->image)) {
+            Storage::delete('public/' . $folder->image);
         }
     }
 

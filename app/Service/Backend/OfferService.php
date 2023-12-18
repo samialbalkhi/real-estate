@@ -33,7 +33,7 @@ class OfferService
 
     public function update(OfferRequest $request, Offer $offer)
     {
-        $this->updateImage('image_offer');
+        $this->updateImage($offer);
 
         return $offer->update([
             'name' => $request->name,
@@ -45,8 +45,7 @@ class OfferService
 
     public function destroy(Offer $offer)
     {
-     
-        $this->deleteImage($offer->image);
-         $offer->delete();
+        $this->deleteImage($offer);
+        $offer->delete();
     }
 }
