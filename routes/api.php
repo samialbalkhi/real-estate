@@ -1,19 +1,16 @@
 <?php
 
-use App\Http\Controllers\Backend\{
-    AccountTypeController,
-    AdvertisementController,
-    AuthAdminController,
-    HomePageContentController,
-    OfferController,
-    OrderController,
-    ProductController,
-    RealEstateCategoryController,
-    RealEstateTypeController,
-    ReviewController,
-    SectionController,
-};
-
+use App\Http\Controllers\Backend\AccountTypeController;
+use App\Http\Controllers\Backend\AdvertisementController;
+use App\Http\Controllers\Backend\AuthAdminController;
+use App\Http\Controllers\Backend\HomePageContentController;
+use App\Http\Controllers\Backend\OfferController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\RealEstateCategoryController;
+use App\Http\Controllers\Backend\RealEstateTypeController;
+use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
