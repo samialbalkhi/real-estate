@@ -5,11 +5,13 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\User;
+use App\Models\Order;
 use App\Models\Section;
 use App\Models\AccountType;
+use App\Models\Advertisement;
 use App\Models\RealEstateType;
 use App\Models\HomePageContent;
-use App\Models\Order;
+use App\Models\Offer;
 use Illuminate\Database\Seeder;
 use App\Models\RealEstateCategory;
 
@@ -36,7 +38,7 @@ class DatabaseSeeder extends Seeder
         RealEstateCategory::factory(20)->create();
         RealEstateType::factory(2)->create();
         Order::factory(10)->create();
-
-
+        Advertisement::factory(100)->create();
+        Offer::factory(20)->create();
     }
 }
