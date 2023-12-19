@@ -11,6 +11,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 class SectionFactory extends Factory
 {
     protected $model = Section::class;
+
     /**
      * Define the model's default state.
      *
@@ -20,7 +21,7 @@ class SectionFactory extends Factory
     {
         return [
             'name' => fake()->unique()->name(),
-            'status' => rand(true,false),
+            'status' => rand(true, false),
         ];
     }
 }

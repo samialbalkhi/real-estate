@@ -20,7 +20,7 @@ class RealEstateTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->randomElement(['housing', 'Rent'])
+            'name' => $this->faker->randomElement(['housing', 'Rent']),
         ];
     }
 }

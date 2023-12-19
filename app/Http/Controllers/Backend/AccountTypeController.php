@@ -3,15 +3,16 @@
 namespace App\Http\Controllers\Backend;
 
 use App\helpers\Helpers;
-use App\Models\AccountType;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\AccountTypeService;
 use App\Http\Requests\Backend\AccountTypeRequest;
+use App\Models\AccountType;
+use App\Service\Backend\AccountTypeService;
 
 class AccountTypeController extends Controller
 {
-    public function __construct(private AccountTypeService $accountTypeService){}
+    public function __construct(private AccountTypeService $accountTypeService)
+    {
+    }
 
     public function index()
     {
@@ -20,7 +21,9 @@ class AccountTypeController extends Controller
 
     public function store(AccountTypeRequest $request)
     {
-        return response()->json($this->accountTypeService->store($request));
+        $this->accountTypeService->store($request);
+
+        return Helpers::createSuccessResponse();
     }
 
     public function edit(AccountType $accountType)
@@ -31,13 +34,14 @@ class AccountTypeController extends Controller
     public function update(AccountTypeRequest $request, AccountType $accountType)
     {
         $this->accountTypeService->update($request, $accountType);
+
         return Helpers::updateSuccessResponse();
     }
-
 
     public function destroy(AccountType $accountType)
     {
         $this->accountTypeService->destroy($accountType);
+
         return Helpers::deleteSuccessResponse();
     }
 }

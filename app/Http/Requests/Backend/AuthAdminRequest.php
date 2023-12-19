@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Backend;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AuthAdminRequest extends FormRequest
@@ -23,10 +23,10 @@ class AuthAdminRequest extends FormRequest
      */
     public function rules(): array
     {
-            return [
-                'email' => ['required', 'email'],
-                'password' => ['required', 'min:8', 'max:30'],
-            ];
+        return [
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'max:30'],
+        ];
     }
 
     public function failedValidation(Validator $validator)

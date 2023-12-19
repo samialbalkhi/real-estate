@@ -2,12 +2,11 @@
 
 namespace Tests\Feature\Section;
 
-use Tests\TestCase;
-use App\Models\User;
 use App\Models\Section;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Support\Str;
+use Tests\TestCase;
 
 class SectionTest extends TestCase
 {
@@ -22,7 +21,10 @@ class SectionTest extends TestCase
         $this->section = $this->createSection();
     }
 
-    public function test_api_return_section_list(): void
+    /**
+     * @test
+     */
+    public function api_return_section_list(): void
     {
         $this->section;
         $response = $this->actingAs($this->admin)->getJson('api/sections');
@@ -31,7 +33,10 @@ class SectionTest extends TestCase
         ]);
     }
 
-    public function test_api_section_store_successful()
+    /**
+     * @test
+     */
+    public function api_section_store_successful()
     {
         $section = [
             'name' => 'asd',
@@ -44,7 +49,10 @@ class SectionTest extends TestCase
         $response->assertJson($section);
     }
 
-    public function test_api_section_invalid_store_returns_error()
+    /**
+     * @test
+     */
+    public function api_section_invalid_store_returns_error()
     {
         $section = [
             'name' => '',
@@ -55,7 +63,10 @@ class SectionTest extends TestCase
         $response->assertStatus(422);
     }
 
-    public function test_section_edit_contains_correct_values(): void
+    /**
+     * @test
+     */
+    public function section_edit_contains_correct_values(): void
     {
         $section = $this->section;
 
@@ -70,7 +81,10 @@ class SectionTest extends TestCase
         ]);
     }
 
-    public function test_section_update_validation_error()
+    /**
+     * @test
+     */
+    public function section_update_validation_error()
     {
         $section = $this->section;
 
@@ -85,12 +99,15 @@ class SectionTest extends TestCase
             'success' => false,
             'message' => 'Validation errors',
             'data' => [
-                'name' => ['The name field is required.']
+                'name' => ['The name field is required.'],
             ],
         ]);
     }
 
-    public function test_section_delete_successful()
+    /**
+     * @test
+     */
+    public function section_delete_successful()
     {
         $section = $this->section;
         $response = $this->actingAs($this->admin)->deleteJson('api/sections/' . $section->id);
@@ -104,6 +121,7 @@ class SectionTest extends TestCase
             'status' => 1,
         ]);
     }
+
     private function createUser()
     {
         return User::factory()->create([

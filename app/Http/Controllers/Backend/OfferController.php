@@ -3,11 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\helpers\Helpers;
-use App\Models\Offer;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\OfferService;
 use App\Http\Requests\Backend\OfferRequest;
+use App\Models\Offer;
+use App\Service\Backend\OfferService;
 
 class OfferController extends Controller
 {
@@ -20,12 +19,12 @@ class OfferController extends Controller
         return response()->json($this->offerService->index());
     }
 
-
     public function store(OfferRequest $request)
     {
-        return response()->json($this->offerService->store($request));
-    }
+        $this->offerService->store($request);
 
+        return Helpers::createSuccessResponse();
+    }
 
     public function edit(Offer $offer)
     {
@@ -35,14 +34,15 @@ class OfferController extends Controller
     public function update(OfferRequest $request, Offer $offer)
     {
         $this->offerService->update($request, $offer);
-        return response()->json(Helpers::updateSuccessResponse());
-    }
 
+        return Helpers::updateSuccessResponse();
+    }
 
     public function destroy(Offer $offer)
     {
-        
+
         $this->offerService->destroy($offer);
-        return response()->json(Helpers::deleteSuccessResponse());
+
+        return Helpers::deleteSuccessResponse();
     }
 }

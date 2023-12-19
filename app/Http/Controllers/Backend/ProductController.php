@@ -1,0 +1,47 @@
+<?php
+
+namespace App\Http\Controllers\Backend;
+
+use App\helpers\Helpers;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\Backend\ProductRequest;
+use App\Models\Product;
+use App\Service\Backend\ProductService;
+
+class ProductController extends Controller
+{
+    public function __construct(private ProductService $productService)
+    {
+    }
+
+    public function index()
+    {
+        return response()->json($this->productService->index());
+    }
+
+    public function store(ProductRequest $request)
+    {
+        $this->productService->store($request);
+
+        return Helpers::createSuccessResponse();
+    }
+
+    public function edit(Product $product)
+    {
+        return response()->json($this->productService->edit($product));
+    }
+
+    public function update(ProductRequest $request, Product $product)
+    {
+        $this->productService->update($request, $product);
+
+        return Helpers::updateSuccessResponse();
+    }
+
+    public function destroy(Product $product)
+    {
+        $this->productService->destroy($product);
+
+        return Helpers::deleteSuccessResponse();
+    }
+}

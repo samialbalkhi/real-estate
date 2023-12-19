@@ -12,7 +12,7 @@ class Authenticate extends Middleware
      */
     protected function redirectTo(Request $request): ?string
     {
-          if ($request->is('api/*')) {
+        if ($request->is('api/*')) {
             return null;
         }
 

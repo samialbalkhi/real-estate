@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Backend;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class HomePageContentRequest extends FormRequest
@@ -25,18 +25,18 @@ class HomePageContentRequest extends FormRequest
     {
         return [
             'description' => ['required'],
-            'image' => ['required', 'image','max:2000'],
+            'image' => ['required', 'image', 'max:2000'],
         ];
-}
+    }
 
-public function failedValidation(Validator $validator)
-{
-    throw new HttpResponseException(
-        response()->json([
-            'success' => false,
-            'message' => 'Validation errors',
-            'data' => $validator->errors(),
-        ]),
-    );
-}
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'data' => $validator->errors(),
+            ]),
+        );
+    }
 }

@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Backend;
 
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OfferRequest extends FormRequest
 {
@@ -30,19 +30,20 @@ class OfferRequest extends FormRequest
         $rules = [
             'name' => ['required', 'unique:offers,name', 'max:30', 'min:3', 'alpha'],
             'image' => ['required', 'image', 'max:2000'],
-            'status' => ['nullable'],
+            'status' => ['nullable', 'boolean'],
 
         ];
 
         if (Request::route()->getName() == 'offer.update') {
             $rules['name'] = [
                 'required', 'max:30', 'min:3', 'alpha',
-                Rule::unique('offers', 'name')->ignore($this->offer->id)
+                Rule::unique('offers', 'name')->ignore($this->offer->id),
             ];
         }
 
         return $rules;
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

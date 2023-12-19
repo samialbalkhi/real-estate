@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests\backend;
 
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AdvertisementRequest extends FormRequest
 {
@@ -34,8 +36,19 @@ class AdvertisementRequest extends FormRequest
             'lat' => ['required'],
             'lng' => ['required'],
             'price' => ['required', 'numeric'],
-            'status' => ['required'],
-            'featured' => ['required'],
+            'status' => ['required', 'boolean'],
+            'featured' => ['required', 'boolean'],
         ];
+    }
+
+    public function failedValidation(Validator $validator)
+    {
+        throw new HttpResponseException(
+            response()->json([
+                'success' => false,
+                'message' => 'Validation errors',
+                'data' => $validator->errors(),
+            ]),
+        );
     }
 }

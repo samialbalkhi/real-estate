@@ -2,10 +2,9 @@
 
 namespace Tests\Feature\Backend\Auth;
 
-use Tests\TestCase;
 use App\Models\User;
-use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class AuthAdminTest extends TestCase
 {
@@ -18,7 +17,10 @@ class AuthAdminTest extends TestCase
         $this->admin = $this->createUser();
     }
 
-    public function test_user_can_login_via_api_with_valid_credentials(): void
+    /**
+     * @test
+     */
+    public function user_can_login_via_api_with_valid_credentials(): void
     {
 
         $response = $this->postJson('/api/login', [
@@ -33,7 +35,10 @@ class AuthAdminTest extends TestCase
         ]);
     }
 
-    public function test_it_validates_required_email_and_password()
+    /**
+     * @test
+     */
+    public function it_validates_required_email_and_password()
     {
         $response = $this->postJson('/api/login', [
             'email' => '',
@@ -50,7 +55,11 @@ class AuthAdminTest extends TestCase
             ],
         ]);
     }
-    public function test_incorrect_email_or_password()
+
+    /**
+     * @test
+     */
+    public function incorrect_email_or_password()
     {
         $response = $this->postJson('/api/login', [
             'email' => 'incorrect@email.com',

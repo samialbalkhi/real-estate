@@ -4,17 +4,18 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\User;
-use App\Models\Order;
-use App\Models\Section;
 use App\Models\AccountType;
 use App\Models\Advertisement;
-use App\Models\RealEstateType;
 use App\Models\HomePageContent;
 use App\Models\Offer;
-use Illuminate\Database\Seeder;
+use App\Models\Order;
+use App\Models\Product;
 use App\Models\RealEstateCategory;
-
+use App\Models\RealEstateType;
+use App\Models\Review;
+use App\Models\Section;
+use App\Models\User;
+use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -23,7 +24,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        User::factory(20)->create();
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@gmail.com',
@@ -40,5 +41,8 @@ class DatabaseSeeder extends Seeder
         Order::factory(10)->create();
         Advertisement::factory(100)->create();
         Offer::factory(20)->create();
+        Product::factory(100)->create();
+        Review::factory(50)->create();
+
     }
 }

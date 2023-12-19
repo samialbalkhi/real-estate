@@ -2,10 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\OfferRequest;
 use App\Models\Offer;
 use App\Traits\ImageUploadTrait;
-use Illuminate\Support\Facades\Storage;
-use App\Http\Requests\Backend\OfferRequest;
 
 class OfferService
 {
@@ -20,10 +19,8 @@ class OfferService
     {
 
         return Offer::create([
-            'name' => $request->name,
             'image' => $this->uploadImage('image_offer'),
-            'status' => $request->filled('status')
-        ]);
+        ] + $request->validated());
     }
 
     public function edit(Offer $offer)
@@ -35,13 +32,10 @@ class OfferService
     {
         $this->updateImage($offer);
 
-        return $offer->update([
-            'name' => $request->name,
+        $offer->update([
             'image' => $this->uploadImage('image_offer'),
-            'status' => $request->filled('status')
-        ]);
+        ] + $request->validated());
     }
-
 
     public function destroy(Offer $offer)
     {

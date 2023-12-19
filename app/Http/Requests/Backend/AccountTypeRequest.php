@@ -2,11 +2,11 @@
 
 namespace App\Http\Requests\Backend;
 
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AccountTypeRequest extends FormRequest
 {
@@ -30,19 +30,20 @@ class AccountTypeRequest extends FormRequest
         $rules = [
             'name' => ['required', 'unique:account_types,name', 'max:30', 'min:3', 'alpha'],
             'image' => ['required', 'image', 'max:2000'],
-            'status' => ['nullable'],
+            'status' => ['nullable', 'boolean'],
 
         ];
 
         if (Request::route()->getName() == 'accountTypes.update') {
             $rules['name'] = [
                 'required', 'max:30', 'min:3', 'alpha',
-                Rule::unique('account_types', 'name')->ignore($this->accountType->id)
+                Rule::unique('account_types', 'name')->ignore($this->accountType->id),
             ];
         }
 
         return $rules;
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

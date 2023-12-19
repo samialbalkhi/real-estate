@@ -22,20 +22,18 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        
-        Response::macro("data", function ($key, $message, $statusCode = 200) {
+
+        Response::macro('data', function ($key, $message, $statusCode = 200) {
             return response()->baseResponse([
                 'key' => $key,
-                'message' => $message
+                'message' => $message,
             ], $statusCode);
         });
 
-        Response::macro("baseResponse", function ($data, $statusCode = 200, $contentType = 'application/json') {
+        Response::macro('baseResponse', function ($data, $statusCode = 200, $contentType = 'application/json') {
             return response()->json($data, $statusCode, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         });
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
 
-        }
     }
-
-    
+}

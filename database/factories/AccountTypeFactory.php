@@ -10,7 +10,6 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class AccountTypeFactory extends Factory
 {
-
     protected $model = AccountType::class;
 
     /**
@@ -24,7 +23,7 @@ class AccountTypeFactory extends Factory
             'name' => fake()->unique()->name(),
             'image' => 'C:/Users/User/Pictures/، 𝔭𝔧𝔪𝔠𝔞𝔣𝔢.jpg',
             'status' => rand(true, false),
-            'user_id' => rand(1,10),
+            'user_id' => rand(1, 10),
 
         ];
     }

@@ -2,13 +2,12 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\AccountTypeRequest;
 use App\Models\AccountType;
 use App\Traits\ImageUploadTrait;
-use App\Http\Requests\Backend\AccountTypeRequest;
 
 class AccountTypeService
 {
-
     use ImageUploadTrait;
 
     public function index()
@@ -18,13 +17,12 @@ class AccountTypeService
 
     public function store(AccountTypeRequest $request): AccountType
     {
-        return AccountType::create([
-            'name' => $request->name,
-            'image' => $this->uploadImage('account_type'),
-            'status' => $request->filled('status'),
-            'user_id' => auth()->user()->id
-
-        ]);
+        return AccountType::create(
+            [
+                'image' => $this->uploadImage('account_type'),
+                'user_id' => auth()->user()->id,
+            ] + $request->validated()
+        );
     }
 
     public function edit(AccountType $accountType)
@@ -36,13 +34,12 @@ class AccountTypeService
     {
         $this->updateImage($accountType);
 
-        return $accountType->update([
-            'name' => $request->name,
-            'image' => $this->uploadImage('account_type'),
-            'status' => $request->filled('status'),
-            'user_id' => auth()->user()->id
-
-        ]);
+        $accountType->update(
+            [
+                'image' => $this->uploadImage('account_type'),
+                'user_id' => auth()->user()->id,
+            ] + $request->validated()
+        );
     }
 
     public function destroy(AccountType $accountType)

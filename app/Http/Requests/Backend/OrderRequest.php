@@ -2,8 +2,8 @@
 
 namespace App\Http\Requests\Backend;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OrderRequest extends FormRequest
@@ -26,20 +26,19 @@ class OrderRequest extends FormRequest
         $rules = [];
 
         $rules = [
-            'lat'=> ['required'],
-            'lng'=> ['required'],
-            'highest_price'=>['required','numeric'],
-            'lowest_price'=>['required','numeric'],
-            'highest_space'=>['required','numeric'],
-            'lowest_space'=>['required','numeric'],
-            'real_estate_type_id'=>['required'],
-            'user_id'=>['required'],
+            'lat' => ['required'],
+            'lng' => ['required'],
+            'highest_price' => ['required', 'numeric'],
+            'lowest_price' => ['required', 'numeric'],
+            'highest_space' => ['required', 'numeric'],
+            'lowest_space' => ['required', 'numeric'],
+            'real_estate_type_id' => ['required'],
+            'user_id' => ['required'],
         ];
-
-
 
         return $rules;
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

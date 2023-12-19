@@ -2,8 +2,8 @@
 
 namespace App\Service\Backend;
 
-use App\Models\Advertisement;
 use App\Http\Requests\backend\AdvertisementRequest;
+use App\Models\Advertisement;
 
 class AdvertisementService
 {

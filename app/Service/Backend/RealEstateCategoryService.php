@@ -2,26 +2,20 @@
 
 namespace App\Service\Backend;
 
-use App\Models\RealEstateCategory;
 use App\Http\Requests\Backend\RealEstateCategoryRequest;
+use App\Models\RealEstateCategory;
 
 class RealEstateCategoryService
 {
-
     public function index()
     {
         return RealEstateCategory::paginate();
     }
 
-
     public function store(RealEstateCategoryRequest $request): RealEstateCategory
     {
-        return RealEstateCategory::create([
-            'name' => $request->name,
-            'status' => $request->filled('status')
-        ]);
+        return RealEstateCategory::create($request->validated());
     }
-
 
     public function edit(RealEstateCategory $realEstateCategory)
     {
@@ -30,14 +24,11 @@ class RealEstateCategoryService
 
     public function update(RealEstateCategoryRequest $request, RealEstateCategory $realEstateCategory)
     {
-        return $realEstateCategory->update([
-            'name' => $request->name,
-            'status' => $request->filled('status')
-        ]);
+        $realEstateCategory->update($request->validated());
     }
 
     public function destroy(RealEstateCategory $realEstateCategory)
     {
-        return $realEstateCategory->delete();
+        $realEstateCategory->delete();
     }
 }

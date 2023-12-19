@@ -21,7 +21,7 @@ class RealEstateCategoryFactory extends Factory
     {
         return [
             'name' => fake()->unique()->name(),
-            'status' => rand(true,false),
+            'status' => rand(true, false),
         ];
     }
 }
