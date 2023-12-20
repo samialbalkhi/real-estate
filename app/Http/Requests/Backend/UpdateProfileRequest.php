@@ -2,10 +2,10 @@
 
 namespace App\Http\Requests\Backend;
 
-use Illuminate\Validation\Rule;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -32,6 +32,7 @@ class UpdateProfileRequest extends FormRequest
             'new_password' => ['sometimes', 'required', 'min:8', 'different:old_password'],
         ];
     }
+
     public function failedValidation(Validator $validator)
     {
         throw new HttpResponseException(

@@ -18,6 +18,6 @@ class ApiResponse
 
     public static function createSuccessResponse($message = 'create successfully')
     {
-        return response()->json(['message' => $message],  Response::HTTP_CREATED);
+        return response()->json(['message' => $message], Response::HTTP_CREATED);
     }
 }

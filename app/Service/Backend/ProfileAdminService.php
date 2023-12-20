@@ -2,9 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Backend\UpdateProfileRequest;
 
 class ProfileAdminService
 {
@@ -33,7 +33,6 @@ class ProfileAdminService
         return $this->responseSuccess();
     }
 
-
     public function logout()
     {
         auth()
@@ -51,7 +50,6 @@ class ProfileAdminService
         );
     }
 
-
     private function responseSuccess()
     {
         return response()->data(
@@ -61,16 +59,18 @@ class ProfileAdminService
         );
     }
 
-
     private function cheackPassword($admin, $old_password)
     {
-        if (Hash::check($old_password, $admin->password)) return true;
+        if (Hash::check($old_password, $admin->password)) {
+            return true;
+        }
+
         return false;
     }
 
     private function updatedFiled($request)
     {
-        return  [
+        return [
             'name' => $request->name,
             'email' => $request->email,
         ];

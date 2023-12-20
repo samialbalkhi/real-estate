@@ -2,10 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\ProductRequest;
 use App\Models\Product;
 use App\Traits\ImageUpload;
-use App\Traits\ImageUploadTrait;
-use App\Http\Requests\Backend\ProductRequest;
 
 class ProductService
 {

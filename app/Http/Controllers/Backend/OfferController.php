@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Offer;
 use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\OfferService;
 use App\Http\Requests\Backend\OfferRequest;
+use App\Models\Offer;
+use App\Service\Backend\OfferService;
 
 class OfferController extends Controller
 {

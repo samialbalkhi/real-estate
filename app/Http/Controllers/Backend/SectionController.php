@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Section;
 use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\SectionService;
 use App\Http\Requests\Backend\SectionRequest;
+use App\Models\Section;
+use App\Service\Backend\SectionService;
 
 class SectionController extends Controller
 {

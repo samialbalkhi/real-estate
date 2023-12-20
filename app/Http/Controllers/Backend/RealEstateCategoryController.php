@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\helpers\ApiResponse;
-use App\Models\RealEstateCategory;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\RealEstateCategoryService;
 use App\Http\Requests\Backend\RealEstateCategoryRequest;
+use App\Models\RealEstateCategory;
+use App\Service\Backend\RealEstateCategoryService;
 
 class RealEstateCategoryController extends Controller
 {

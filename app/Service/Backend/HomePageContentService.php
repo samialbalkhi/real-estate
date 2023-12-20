@@ -2,9 +2,9 @@
 
 namespace App\Service\Backend;
 
-use App\Traits\ImageUpload;
-use App\Models\HomePageContent;
 use App\Http\Requests\Backend\HomePageContentRequest;
+use App\Models\HomePageContent;
+use App\Traits\ImageUpload;
 
 class HomePageContentService
 {

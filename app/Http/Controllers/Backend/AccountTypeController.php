@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\AccountType;
 use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\AccountTypeService;
 use App\Http\Requests\Backend\AccountTypeRequest;
+use App\Models\AccountType;
+use App\Service\Backend\AccountTypeService;
 
 class AccountTypeController extends Controller
 {
