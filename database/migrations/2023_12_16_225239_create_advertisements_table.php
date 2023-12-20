@@ -21,8 +21,8 @@ return new class extends Migration
             $table->string('age_of_real_estate');
             $table->integer('number_of_people');
             $table->string('rental_period');
-            $table->string('lat');
-            $table->string('lng');
+            $table->float('lat');
+            $table->float('lng');
             $table->float('price');
             $table->float('space');
             $table->boolean('status');

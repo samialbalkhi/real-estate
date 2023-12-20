@@ -4,18 +4,20 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
-use App\Models\AccountType;
-use App\Models\Advertisement;
-use App\Models\HomePageContent;
+use App\Models\User;
 use App\Models\Offer;
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\RealEstateCategory;
-use App\Models\RealEstateType;
+use App\Models\Report;
 use App\Models\Review;
+use App\Models\Product;
 use App\Models\Section;
-use App\Models\User;
+use App\Models\LoanTerm;
+use App\Models\AccountType;
+use App\Models\Advertisement;
+use App\Models\RealEstateType;
+use App\Models\HomePageContent;
 use Illuminate\Database\Seeder;
+use App\Models\RealEstateCategory;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +35,14 @@ class DatabaseSeeder extends Seeder
             'phone' => '123',
         ]);
 
+        User::factory()->create([
+            'name' => 'user',
+            'email' => 'user@gmail.com',
+            'password' => 'password',
+            'confirm_password' => bcrypt('password'),
+            'phone' => '123213312',
+        ]);
+
         HomePageContent::factory(10)->create();
         Section::factory(10)->create();
         AccountType::factory(5)->create();
@@ -43,6 +53,7 @@ class DatabaseSeeder extends Seeder
         Offer::factory(20)->create();
         Product::factory(100)->create();
         Review::factory(50)->create();
-
+        LoanTerm::factory(30)->create();
+        Report::factory(30)->create();
     }
 }

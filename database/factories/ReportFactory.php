@@ -2,15 +2,15 @@
 
 namespace Database\Factories;
 
-use App\Models\Review;
+use App\Models\Report;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Review>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Report>
  */
-class ReviewFactory extends Factory
+class ReportFactory extends Factory
 {
-    protected $model = Review::class;
+    protected $model = Report::class;
 
     /**
      * Define the model's default state.
@@ -20,9 +20,9 @@ class ReviewFactory extends Factory
     public function definition(): array
     {
         return [
-            'rating' => rand(1, 5),
+            'reason' => $this->faker->paragraph(),
             'user_id' => 21,
-            'rated_user_id' => rand(1, 20)
+            'reported_user_id' => rand(1, 20),
         ];
     }
 }

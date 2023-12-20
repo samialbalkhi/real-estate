@@ -12,8 +12,8 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('lat');
-            $table->string('lng');
+            $table->float('lat');
+            $table->float('lng');
             $table->float('highest_price');
             $table->float('lowest_price');
             $table->float('highest_space');
