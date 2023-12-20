@@ -20,7 +20,7 @@ class LoanTermFactory extends Factory
     public function definition(): array
     {
         return [
-            'loan_time' => $this->faker->numberBetween(1, 30)
+            'loan_time' => $this->faker->numberBetween(1, 30),
         ];
     }
 }

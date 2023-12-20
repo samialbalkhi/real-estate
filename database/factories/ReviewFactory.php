@@ -22,7 +22,7 @@ class ReviewFactory extends Factory
         return [
             'rating' => rand(1, 5),
             'user_id' => 21,
-            'rated_user_id' => rand(1, 20)
+            'rated_user_id' => rand(1, 20),
         ];
     }
 }
