@@ -2,7 +2,9 @@
 
 namespace App\helpers;
 
-class Helpers
+use Illuminate\Http\Response;
+
+class ApiResponse
 {
     public static function updateSuccessResponse($message = 'updated successfully')
     {
@@ -16,6 +18,6 @@ class Helpers
 
     public static function createSuccessResponse($message = 'create successfully')
     {
-        return response()->json(['message' => $message], 201);
+        return response()->json(['message' => $message],  Response::HTTP_CREATED);
     }
 }

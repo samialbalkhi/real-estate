@@ -4,7 +4,7 @@ namespace App\Traits;
 
 use Illuminate\Support\Facades\Storage;
 
-trait ImageUploadTrait
+trait ImageUpload
 {
     public function uploadImage($folder)
     {

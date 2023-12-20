@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\backend\AdvertisementRequest;
+use App\helpers\ApiResponse;
 use App\Models\Advertisement;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\AdvertisementService;
+use App\Http\Requests\backend\AdvertisementRequest;
 
 class AdvertisementController extends Controller
 {
@@ -28,6 +28,6 @@ class AdvertisementController extends Controller
     {
         $this->advertisementService->update($request, $advertisement);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
     }
 }

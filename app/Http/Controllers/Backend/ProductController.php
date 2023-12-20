@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\ProductRequest;
 use App\Models\Product;
+use App\helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\ProductService;
+use App\Http\Requests\Backend\ProductRequest;
 
 class ProductController extends Controller
 {
@@ -23,7 +23,7 @@ class ProductController extends Controller
     {
         $this->productService->store($request);
 
-        return Helpers::createSuccessResponse();
+        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(Product $product)
@@ -35,13 +35,13 @@ class ProductController extends Controller
     {
         $this->productService->update($request, $product);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(Product $product)
     {
         $this->productService->destroy($product);
 
-        return Helpers::deleteSuccessResponse();
+        return ApiResponse::deleteSuccessResponse();
     }
 }

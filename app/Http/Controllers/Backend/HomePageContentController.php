@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\HomePageContentRequest;
+use App\helpers\ApiResponse;
 use App\Models\HomePageContent;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\HomePageContentService;
+use App\Http\Requests\Backend\HomePageContentRequest;
 
 class HomePageContentController extends Controller
 {
@@ -25,7 +25,7 @@ class HomePageContentController extends Controller
     {
         $this->homePageContentService->update($request, $homePageContent);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
 
     }
 }

@@ -2,13 +2,13 @@
 
 namespace App\Service\Backend;
 
-use App\Http\Requests\Backend\HomePageContentRequest;
+use App\Traits\ImageUpload;
 use App\Models\HomePageContent;
-use App\Traits\ImageUploadTrait;
+use App\Http\Requests\Backend\HomePageContentRequest;
 
 class HomePageContentService
 {
-    use ImageUploadTrait;
+    use ImageUpload;
 
     public function edit(HomePageContent $homePageContent)
     {

@@ -2,13 +2,13 @@
 
 namespace App\Service\Backend;
 
-use App\Http\Requests\Backend\AccountTypeRequest;
 use App\Models\AccountType;
-use App\Traits\ImageUploadTrait;
+use App\Traits\ImageUpload;
+use App\Http\Requests\Backend\AccountTypeRequest;
 
 class AccountTypeService
 {
-    use ImageUploadTrait;
+    use ImageUpload;
 
     public function index()
     {

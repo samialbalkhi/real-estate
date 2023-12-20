@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\SectionRequest;
 use App\Models\Section;
+use App\helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\SectionService;
+use App\Http\Requests\Backend\SectionRequest;
 
 class SectionController extends Controller
 {
@@ -23,7 +23,7 @@ class SectionController extends Controller
     {
         $this->sctionService->store($request);
 
-        return Helpers::createSuccessResponse();
+        return ApiResponse::createSuccessResponse();
 
     }
 
@@ -37,7 +37,7 @@ class SectionController extends Controller
     {
         $this->sctionService->update($request, $section);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
 
     }
 
@@ -45,7 +45,7 @@ class SectionController extends Controller
     {
         $this->sctionService->destroy($section);
 
-        return Helpers::deleteSuccessResponse();
+        return ApiResponse::deleteSuccessResponse();
 
     }
 }

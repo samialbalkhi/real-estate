@@ -1,18 +1,22 @@
 <?php
 
-use App\Http\Controllers\Backend\AccountTypeController;
-use App\Http\Controllers\Backend\AdvertisementController;
-use App\Http\Controllers\Backend\AuthAdminController;
-use App\Http\Controllers\Backend\HomePageContentController;
-use App\Http\Controllers\Backend\OfferController;
-use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\RealEstateCategoryController;
-use App\Http\Controllers\Backend\RealEstateTypeController;
-use App\Http\Controllers\Backend\ReviewController;
-use App\Http\Controllers\Backend\SectionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\OfferController;
+use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\ReviewController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\SectionController;
+use App\Http\Controllers\Backend\AuthAdminController;
+use App\Http\Controllers\Backend\UserCountController;
+use App\Http\Controllers\Backend\OrderCountController;
+use App\Http\Controllers\Backend\AccountTypeController;
+use App\Http\Controllers\Backend\AdvertisementController;
+use App\Http\Controllers\Backend\RealEstateTypeController;
+use App\Http\Controllers\Backend\HomePageContentController;
+use App\Http\Controllers\Backend\AdvertisementCountController;
+use App\Http\Controllers\Backend\RealEstateCategoryController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
@@ -46,4 +50,13 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::prefix('reviews')->group(function () {
         Route::get('index', ReviewController::class);
     });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('index', [ReportController::class, 'index']);
+        Route::get('show/{report}', [ReportController::class, 'show']);
+    });
+
+    Route::get('/userCount', UserCountController::class);
+    Route::get('/orderCount', OrderCountController::class);
+    Route::get('/advertisementCount', AdvertisementCountController::class);
 });

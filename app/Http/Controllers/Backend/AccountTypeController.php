@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\AccountTypeRequest;
 use App\Models\AccountType;
+use App\helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\AccountTypeService;
+use App\Http\Requests\Backend\AccountTypeRequest;
 
 class AccountTypeController extends Controller
 {
@@ -23,7 +23,7 @@ class AccountTypeController extends Controller
     {
         $this->accountTypeService->store($request);
 
-        return Helpers::createSuccessResponse();
+        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(AccountType $accountType)
@@ -35,13 +35,13 @@ class AccountTypeController extends Controller
     {
         $this->accountTypeService->update($request, $accountType);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(AccountType $accountType)
     {
         $this->accountTypeService->destroy($accountType);
 
-        return Helpers::deleteSuccessResponse();
+        return ApiResponse::deleteSuccessResponse();
     }
 }

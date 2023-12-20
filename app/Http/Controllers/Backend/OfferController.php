@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\Helpers;
-use App\Http\Controllers\Controller;
-use App\Http\Requests\Backend\OfferRequest;
 use App\Models\Offer;
+use App\helpers\ApiResponse;
+use App\Http\Controllers\Controller;
 use App\Service\Backend\OfferService;
+use App\Http\Requests\Backend\OfferRequest;
 
 class OfferController extends Controller
 {
@@ -23,7 +23,7 @@ class OfferController extends Controller
     {
         $this->offerService->store($request);
 
-        return Helpers::createSuccessResponse();
+        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(Offer $offer)
@@ -35,7 +35,7 @@ class OfferController extends Controller
     {
         $this->offerService->update($request, $offer);
 
-        return Helpers::updateSuccessResponse();
+        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(Offer $offer)
@@ -43,6 +43,6 @@ class OfferController extends Controller
 
         $this->offerService->destroy($offer);
 
-        return Helpers::deleteSuccessResponse();
+        return ApiResponse::deleteSuccessResponse();
     }
 }
