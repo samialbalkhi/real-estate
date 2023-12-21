@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Backend;
 
+use App\Rules\Phone;
 use Illuminate\Validation\Rule;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
@@ -28,6 +29,8 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user())],
+            'phone' => ['required',new Phone(), Rule::unique('users')->ignore(auth()->user())],
+            'image' => ['nullable', 'image'],
             'old_password' => ['sometimes', 'required', 'min:8'],
             'new_password' => ['sometimes', 'required', 'min:8', 'different:old_password'],
         ];

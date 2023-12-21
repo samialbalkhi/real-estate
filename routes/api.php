@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\RealEstateTypeController;
 use App\Http\Controllers\Backend\HomePageContentController;
 use App\Http\Controllers\Backend\AdvertisementCountController;
+use App\Http\Controllers\Backend\ProfileAdminController;
 use App\Http\Controllers\Backend\RealEstateCategoryController;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -59,4 +60,8 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::get('/userCount', UserCountController::class);
     Route::get('/orderCount', OrderCountController::class);
     Route::get('/advertisementCount', AdvertisementCountController::class);
+    
+    Route::get('/getProfile', [ProfileAdminController::class, 'getProfile']);
+    Route::post('/profileAdmin', [ProfileAdminController::class, 'profileAdmin']);
+
 });

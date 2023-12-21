@@ -37,6 +37,5 @@ class AppServiceProvider extends ServiceProvider
             return response()->json($data, $statusCode, [], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
         });
         Sanctum::usePersonalAccessTokenModel(PersonalAccessToken::class);
-
     }
 }
