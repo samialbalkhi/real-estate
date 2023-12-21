@@ -9,6 +9,6 @@ class UserCountService
     public function userCount()
     {
         return ['user_count' => User::count()];
-            
+
     }
 }

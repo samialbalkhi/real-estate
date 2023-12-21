@@ -2,9 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\OfferRequest;
 use App\Models\Offer;
 use App\Traits\ImageUpload;
-use App\Http\Requests\Backend\OfferRequest;
 
 class OfferService
 {

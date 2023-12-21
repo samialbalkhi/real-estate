@@ -2,10 +2,14 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\UpdateProfileRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+<<<<<<< HEAD
 use App\Http\Requests\Backend\UpdateProfileRequest;
 use App\Traits\ImageUpload;
+=======
+>>>>>>> 9b5495c90298a33c454398db13b0f252829198a3
 
 class ProfileAdminService
 {
@@ -54,7 +58,6 @@ class ProfileAdminService
         );
     }
 
-
     private function responseSuccess()
     {
         return response()->data(
@@ -64,10 +67,12 @@ class ProfileAdminService
         );
     }
 
-
     private function cheackPassword($admin, $old_password)
     {
-        if (Hash::check($old_password, $admin->password)) return true;
+        if (Hash::check($old_password, $admin->password)) {
+            return true;
+        }
+
         return false;
     }
 

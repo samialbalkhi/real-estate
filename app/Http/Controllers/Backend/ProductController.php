@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Product;
 use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\ProductService;
 use App\Http\Requests\Backend\ProductRequest;
+use App\Models\Product;
+use App\Service\Backend\ProductService;
 
 class ProductController extends Controller
 {

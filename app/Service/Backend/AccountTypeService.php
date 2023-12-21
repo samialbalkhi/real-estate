@@ -2,9 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Backend\AccountTypeRequest;
 use App\Models\AccountType;
 use App\Traits\ImageUpload;
-use App\Http\Requests\Backend\AccountTypeRequest;
 
 class AccountTypeService
 {
