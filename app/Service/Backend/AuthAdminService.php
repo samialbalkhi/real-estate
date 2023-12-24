@@ -2,9 +2,9 @@
 
 namespace App\Service\Backend;
 
+use App\Http\Requests\Frontend\AuthRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Frontend\AuthRequest;
 use Illuminate\Validation\ValidationException;
 
 class AuthAdminService

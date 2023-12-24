@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Backend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Backend\AuthAdminService;
 use App\Http\Requests\Frontend\AuthRequest;
+use App\Service\Backend\AuthAdminService;
+use Illuminate\Http\Request;
 
 class AuthAdminController extends Controller
 {

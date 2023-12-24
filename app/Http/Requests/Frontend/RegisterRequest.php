@@ -3,10 +3,10 @@
 namespace App\Http\Requests\Frontend;
 
 use App\Rules\Phone;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
 
 class RegisterRequest extends FormRequest
 {
@@ -28,7 +28,7 @@ class RegisterRequest extends FormRequest
         return [
             'name' => ['required', 'min:3', 'max:30'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'phone' => ['required', new Phone(), 'unique:users,phone'],
+            'phone' => ['required', new Phone, 'unique:users,phone'],
             'image' => ['nullable', 'image'],
             'password' => ['sometimes', 'required', 'min:3', 'max:30', 'confirmed'],
             'password_confirmation' => ['sometimes', 'required', 'min:8'],

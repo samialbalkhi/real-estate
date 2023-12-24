@@ -3,16 +3,17 @@
 namespace App\Service\Backend;
 
 use App\helpers\ApiResponse;
+use App\Http\Requests\Backend\UpdateProfileRequest;
+use App\Http\Resources\Backend\GetProfileAdminResource;
 use App\Models\User;
 use App\Traits\ImageUpload;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use App\Http\Requests\Backend\UpdateProfileRequest;
-use App\Http\Resources\Backend\GetProfileAdminResource;
 
 class ProfileAdminService
 {
     use ImageUpload;
+
     public function getProfile()
     {
         return new GetProfileAdminResource(
@@ -28,7 +29,7 @@ class ProfileAdminService
         $updatedFields = $this->getUpdatedFields($request, $admin);
 
         if ($request->filled('old_password')) {
-            if (!$this->checkPassword($admin, $request->old_password)) {
+            if (! $this->checkPassword($admin, $request->old_password)) {
                 return $this->responseError();
             }
 
@@ -46,13 +47,14 @@ class ProfileAdminService
             ->user()
             ->tokens()
             ->delete();
+
         return ApiResponse::logoutSuccessResponse();
     }
 
     private function responseError()
     {
         throw ValidationException::withMessages([
-            'error' => ['old password  not correct']
+            'error' => ['old password  not correct'],
         ]);
     }
 
@@ -73,7 +75,7 @@ class ProfileAdminService
     private function getUpdatedFields(UpdateProfileRequest $request, $admin)
     {
         return [
-            'name'  => $request->input('name', $admin->name),
+            'name' => $request->input('name', $admin->name),
             'email' => $request->input('email', $admin->email),
             'phone' => $request->input('phone', $admin->phone),
             'image' => $this->uploadImage('user_image'),

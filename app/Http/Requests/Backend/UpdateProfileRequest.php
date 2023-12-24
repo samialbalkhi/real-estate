@@ -2,13 +2,12 @@
 
 namespace App\Http\Requests\Backend;
 
-
 use App\Rules\Phone;
-use Illuminate\Validation\Rule;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -31,7 +30,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user())],
-            'phone' => ['required', new Phone(), Rule::unique('users')->ignore(auth()->user())],
+            'phone' => ['required', new Phone, Rule::unique('users')->ignore(auth()->user())],
             'image' => ['nullable', 'image'],
             'old_password' => ['sometimes', 'required', 'min:8'],
             'new_password' => ['sometimes', 'required', 'min:8', 'different:old_password'],

@@ -3,13 +3,13 @@
 use App\Http\Controllers\Backend\AccountTypeController;
 use App\Http\Controllers\Backend\AdvertisementController;
 use App\Http\Controllers\Backend\AdvertisementCountController;
-use App\Http\Controllers\Backend\ProfileAdminController;
 use App\Http\Controllers\Backend\AuthAdminController;
 use App\Http\Controllers\Backend\HomePageContentController;
 use App\Http\Controllers\Backend\OfferController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\OrderCountController;
 use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\ProfileAdminController;
 use App\Http\Controllers\Backend\RealEstateCategoryController;
 use App\Http\Controllers\Backend\RealEstateTypeController;
 use App\Http\Controllers\Backend\ReportController;
@@ -18,7 +18,6 @@ use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\UserCountController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
@@ -58,16 +57,15 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
         Route::get('show/{report}', [ReportController::class, 'show']);
     });
 
-
-    Route::get('/userCount', UserCountController::class);
-    Route::get('/orderCount', OrderCountController::class);
-    Route::get('/advertisementCount', AdvertisementCountController::class);
+    Route::get('userCount', UserCountController::class);
+    Route::get('orderCount', OrderCountController::class);
+    Route::get('advertisementCount', AdvertisementCountController::class);
 
     Route::get('userCount', UserCountController::class);
     Route::get('orderCount', OrderCountController::class);
     Route::get('advertisementCount', AdvertisementCountController::class);
 
-    Route::get('/getProfile', [ProfileAdminController::class, 'getProfile']);
-    Route::post('/profileAdmin', [ProfileAdminController::class, 'profileAdmin']);
-    Route::get('/logout', [ProfileAdminController::class, 'logout']);
+    Route::get('getProfile', [ProfileAdminController::class, 'getProfile']);
+    Route::post('profileAdmin', [ProfileAdminController::class, 'profileAdmin']);
+    Route::get('logout', [ProfileAdminController::class, 'logout']);
 });

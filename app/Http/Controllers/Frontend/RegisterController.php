@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Frontend\RegisterService;
 use App\Http\Requests\Frontend\RegisterRequest;
+use App\Service\Frontend\RegisterService;
+use Illuminate\Http\Request;
 
 class RegisterController extends Controller
 {
