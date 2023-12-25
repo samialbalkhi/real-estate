@@ -9,25 +9,26 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class SendVerificationCode extends Mailable
+class SendCode extends Mailable
 {
     use Queueable, SerializesModels;
 
     /**
      * Create a new message instance.
      */
-    public function __construct()
-    {
-        //
-    }
+    public $data = [];
 
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Verification Code',
+            subject: 'Send Code',
         );
     }
 
@@ -37,7 +38,7 @@ class SendVerificationCode extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'email',
         );
     }
 
