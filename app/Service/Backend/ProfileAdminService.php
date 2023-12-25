@@ -2,41 +2,40 @@
 
 namespace App\Service\Backend;
 
-use App\Http\Requests\Backend\UpdateProfileRequest;
+use App\helpers\ApiResponse;
 use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-<<<<<<< HEAD
-use App\Http\Requests\Backend\UpdateProfileRequest;
 use App\Traits\ImageUpload;
-=======
->>>>>>> 9b5495c90298a33c454398db13b0f252829198a3
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
+use App\Http\Requests\Backend\UpdateProfileRequest;
+use App\Http\Resources\Backend\GetProfileAdminResource;
 
 class ProfileAdminService
 {
     use ImageUpload;
     public function getProfile()
     {
-        return User::find(auth()->user()->id);
+        return new GetProfileAdminResource(
+            User::find(auth()->user()->id)
+        );
     }
 
     public function profileAdmin(UpdateProfileRequest $request)
     {
-        $admin = auth()->user();
-        $this->updateImage($admin);
-        $updatedFiled = $this->updatedFiled($request);
 
-        if ($request->old_password) {
-            if ($this->cheackPassword($admin, $request->old_password) == true) {
-                $updatedFiled = array_merge($this->updatedFiled($request), [
-                    'password' => $request->new_password,
-                ]);
-            } else {
+        $admin = auth()->user();
+
+        $updatedFields = $this->getUpdatedFields($request, $admin);
+
+        if ($request->filled('old_password')) {
+            if (!$this->checkPassword($admin, $request->old_password)) {
                 return $this->responseError();
             }
+
+            $updatedFields['password'] = $request->new_password;
         }
-        auth()
-            ->user()
-            ->update($updatedFiled);
+        $this->updateImage($admin);
+        $admin->update($updatedFields);
 
         return $this->responseSuccess();
     }
@@ -47,15 +46,14 @@ class ProfileAdminService
             ->user()
             ->tokens()
             ->delete();
+        return ApiResponse::logoutSuccessResponse();
     }
 
     private function responseError()
     {
-        return response()->data(
-            key: 'error',
-            message: 'old password  not correct',
-            statusCode: 422
-        );
+        throw ValidationException::withMessages([
+            'error' => ['old password  not correct']
+        ]);
     }
 
     private function responseSuccess()
@@ -67,21 +65,17 @@ class ProfileAdminService
         );
     }
 
-    private function cheackPassword($admin, $old_password)
+    private function checkPassword($admin, $old_password)
     {
-        if (Hash::check($old_password, $admin->password)) {
-            return true;
-        }
-
-        return false;
+        return Hash::check($old_password, $admin->password);
     }
 
-    private function updatedFiled($request)
+    private function getUpdatedFields(UpdateProfileRequest $request, $admin)
     {
         return [
-            'name' => $request->name,
-            'email' => $request->email,
-            'phone' => $request->phone,
+            'name'  => $request->input('name', $admin->name),
+            'email' => $request->input('email', $admin->email),
+            'phone' => $request->input('phone', $admin->phone),
             'image' => $this->uploadImage('user_image'),
         ];
     }

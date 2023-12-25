@@ -2,8 +2,9 @@
 
 namespace App\Http\Requests\backend;
 
-use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
 class AdvertisementRequest extends FormRequest
@@ -48,7 +49,7 @@ class AdvertisementRequest extends FormRequest
                 'success' => false,
                 'message' => 'Validation errors',
                 'data' => $validator->errors(),
-            ]),
+            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
 }

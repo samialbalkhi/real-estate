@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Models\AccountType;
 use Illuminate\Support\Carbon;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
@@ -26,7 +27,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'image',
-        'confirm_password'
+        'password_confirmation'
     ];
 
     /**
@@ -38,10 +39,10 @@ class User extends Authenticatable
         'password',
         'remember_token',
         'updated_at',
-        'confirm_password',
+        'password_confirmation',
         'email_verified_at'
     ];
-
+    protected $dates = ['created_at'];
     /**
      * The attributes that should be cast.
      *
@@ -50,6 +51,7 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
+
     ];
 
     public function setPasswordAttribute($value)
@@ -57,8 +59,13 @@ class User extends Authenticatable
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function getCreatedAtAttribute($value)
+    // public function getCreatedAtAttribute($value)
+    // {
+    //     return Carbon::parse($value)->diffForHumans();
+    // }
+
+    public function accountTypes()
     {
-        return Carbon::parse($value)->diffForHumans();
+        return $this->hasMany(AccountType::class);
     }
 }

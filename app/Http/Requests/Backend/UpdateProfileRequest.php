@@ -2,16 +2,13 @@
 
 namespace App\Http\Requests\Backend;
 
-<<<<<<< HEAD
+
 use App\Rules\Phone;
 use Illuminate\Validation\Rule;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
-=======
->>>>>>> 9b5495c90298a33c454398db13b0f252829198a3
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {
@@ -34,7 +31,7 @@ class UpdateProfileRequest extends FormRequest
         return [
             'name' => ['required', 'max:255', 'min:3'],
             'email' => ['required', 'email', Rule::unique('users')->ignore(auth()->user())],
-            'phone' => ['required',new Phone(), Rule::unique('users')->ignore(auth()->user())],
+            'phone' => ['required', new Phone(), Rule::unique('users')->ignore(auth()->user())],
             'image' => ['nullable', 'image'],
             'old_password' => ['sometimes', 'required', 'min:8'],
             'new_password' => ['sometimes', 'required', 'min:8', 'different:old_password'],
@@ -48,7 +45,7 @@ class UpdateProfileRequest extends FormRequest
                 'success' => false,
                 'message' => 'Validation errors',
                 'data' => $validator->errors(),
-            ]),
+            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
         );
     }
 }

@@ -20,4 +20,9 @@ class ApiResponse
     {
         return response()->json(['message' => $message], Response::HTTP_CREATED);
     }
+
+    public static function logoutSuccessResponse($message = 'logout successfully')
+    {
+        return response()->json(['message' => $message], 200);
+    }
 }

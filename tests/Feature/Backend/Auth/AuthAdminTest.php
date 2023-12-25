@@ -79,7 +79,7 @@ class AuthAdminTest extends TestCase
             'name' => 'admin',
             'email' => 'admin@example.com',
             'phone' => '123235465',
-            'confirm_password' => '123235465',
+            'password_confirmation' => '123235465',
             'password' => 'password',
         ]);
     }

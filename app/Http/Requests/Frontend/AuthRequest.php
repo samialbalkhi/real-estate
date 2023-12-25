@@ -1,15 +1,13 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests\Frontend;
 
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class AccountTypeRequest extends FormRequest
+class AuthRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -26,23 +24,10 @@ class AccountTypeRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-
-        $rules = [
-            'name' => ['required', 'unique:account_types,name', 'max:30', 'min:3', 'alpha'],
-            'image' => ['required', 'image', 'max:2000'],
-            'status' => ['nullable', 'boolean'],
-
+        return [
+            'email' => ['required', 'email'],
+            'password' => ['required', 'min:8', 'max:30'],
         ];
-
-        if (Request::route()->getName() == 'accountTypes.update') {
-            $rules['name'] = [
-                'required', 'max:30', 'min:3', 'alpha',
-                Rule::unique('account_types', 'name')->ignore($this->accountType->id),
-            ];
-        }
-
-        return $rules;
     }
 
     public function failedValidation(Validator $validator)
