@@ -2,10 +2,9 @@
 
 namespace App\Service\Frontend;
 
+use App\Http\Requests\Frontend\RegisterRequest;
 use App\Models\User;
 use App\Traits\ImageUpload;
-use App\Http\Requests\Frontend\RegisterRequest;
-
 
 class RegisterService
 {

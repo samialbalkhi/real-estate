@@ -1,13 +1,14 @@
 <?php
+
 namespace App\Service\Frontend;
 
+use App\Http\Requests\Frontend\AuthRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
-use App\Http\Requests\Frontend\AuthRequest;
 use Illuminate\Validation\ValidationException;
 
-class AuthUserService {
-
+class AuthUserService
+{
     public function login(AuthRequest $request)
     {
         $user = User::whereEmail($request->email)->first();

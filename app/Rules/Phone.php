@@ -12,11 +12,11 @@ class Phone implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
-        if (!$this->phone($attribute, $value)) {
+        if (! $this->phone($attribute, $value)) {
             $errorMessage = trans('Please enter a valid phone number');
 
             throw new HttpResponseException(
@@ -28,7 +28,6 @@ class Phone implements ValidationRule
             );
         }
     }
-
 
     public function phone($attribute, $value)
     {

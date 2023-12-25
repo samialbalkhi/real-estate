@@ -3,13 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
-use App\Models\AccountType;
-use Illuminate\Support\Carbon;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -20,14 +19,13 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-
     protected $fillable = [
         'name',
         'email',
         'password',
         'phone',
         'image',
-        'password_confirmation'
+        'password_confirmation',
     ];
 
     /**
@@ -40,7 +38,7 @@ class User extends Authenticatable
         'remember_token',
         'updated_at',
         'password_confirmation',
-        'email_verified_at'
+        'email_verified_at',
     ];
     protected $dates = ['created_at'];
     /**

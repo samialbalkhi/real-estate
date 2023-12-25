@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use Throwable;
 use App\Mail\SendCode;
 use Illuminate\Bus\Queueable;
 use Illuminate\Support\Facades\Mail;
@@ -11,6 +10,8 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
+
+use Throwable;
 
 class SendVerificationCode implements ShouldQueue
 {
@@ -37,7 +38,6 @@ class SendVerificationCode implements ShouldQueue
             'code' => $this->data['code'],
         ];
         Mail::to($this->email)->send(new SendCode($data));
-
     }
 
     public function failed(Throwable $e)
