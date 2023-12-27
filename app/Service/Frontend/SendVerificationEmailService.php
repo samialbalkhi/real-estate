@@ -2,16 +2,15 @@
 
 namespace App\Service\Frontend;
 
-use Illuminate\Http\Request;
-use App\Models\ValidationCode;
 use App\Jobs\SendVerificationCode;
-use Illuminate\Console\Scheduling\Schedule;
+use App\Models\ValidationCode;
+use Illuminate\Http\Request;
 
 class SendVerificationEmailService
 {
     public function sendcode(Request $request)
     {
-        $code = random_int(100000, 999999); 
+        $code = random_int(100000, 999999);
 
         ValidationCode::create([
             'code' => $code,

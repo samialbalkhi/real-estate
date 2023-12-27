@@ -21,6 +21,7 @@ class SendCode extends Mailable
     {
         $this->data = $data;
     }
+
     /**
      * Get the message envelope.
      */

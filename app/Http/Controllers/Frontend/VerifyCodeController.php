@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Frontend\VerifyCodeService;
-use Illuminate\Database\Eloquent\Casts\Json;
+use Illuminate\Http\Request;
 
 class VerifyCodeController extends Controller
 {
