@@ -8,4 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class ValidationCode extends Model
 {
     use HasFactory;
+    protected $fillable = ['code','user_id'];
+
 }
