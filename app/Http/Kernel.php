@@ -2,9 +2,6 @@
 
 namespace App\Http;
 
-use App\Models\ValidationCode;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -60,5 +57,4 @@ class Kernel extends HttpKernel
         'ability' => \Laravel\Sanctum\Http\Middleware\CheckForAnyAbility::class,
     ];
 
-  
 }

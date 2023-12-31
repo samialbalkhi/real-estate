@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service\Frontend;
 
 use App\Models\ValidationCode;
@@ -10,10 +11,11 @@ class VerifyCodeService
     {
         $code = ValidationCode::where('code', $request->code)->first();
 
-        if (!$code == $request->code) 
+        if (! $code == $request->code) {
 
             return 'Unfortunately, the code is invalid !!';
-        
+        }
+
         return 'successfully';
     }
 }

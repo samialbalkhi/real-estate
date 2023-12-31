@@ -7,6 +7,6 @@ class ViewAdvertisementDetailService
 {
     public function ViewAdvertisementDetail(Advertisement $advertisement)
     {
-        return $advertisement ;
+        return $advertisement;
     }
 }
