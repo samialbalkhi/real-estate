@@ -28,6 +28,7 @@ class OrderFactory extends Factory
             'lowest_space' => '100',
             'real_estate_type_id' => rand(1, 2),
             'user_id' => rand(1, 10),
+            'real_estate_category_id'=>rand(1,10),
         ];
     }
 }

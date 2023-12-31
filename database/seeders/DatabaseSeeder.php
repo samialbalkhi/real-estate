@@ -43,7 +43,7 @@ class DatabaseSeeder extends Seeder
             'phone' => '123213312',
         ]);
 
-        HomePageContent::factory(10)->create();
+        HomePageContent::factory(1)->create();
         Section::factory(10)->create();
         AccountType::factory(5)->create();
         RealEstateCategory::factory(20)->create();

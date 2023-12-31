@@ -25,4 +25,9 @@ class ApiResponse
     {
         return response()->json(['message' => $message], 200);
     }
+
+    public static function resetPsswordSuccessResponse($message = 'Password reset successfully')
+    {
+        return response()->json(['message' => $message], 200);
+    }
 }

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Frontend\SendCodeRequest;
 use App\Service\Frontend\SendVerificationEmailService;
 
 class SendVerificationEmailController extends Controller
@@ -11,7 +11,7 @@ class SendVerificationEmailController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, SendVerificationEmailService $service)
+    public function __invoke(SendCodeRequest $request, SendVerificationEmailService $service)
     {
         $service->sendcode($request);
         return response()->json(['message' => 'Verification email sent successfully']);

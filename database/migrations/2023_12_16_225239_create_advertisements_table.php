@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\RealEstateCategory;
 use App\Models\RealEstateType;
 use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
@@ -33,6 +34,11 @@ return new class extends Migration
                 ->cascadeOnUpdate();
 
             $table->foreignIdFor(User::class)
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
+
+                $table->foreignIdFor(RealEstateCategory::class)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
