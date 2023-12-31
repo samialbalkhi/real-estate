@@ -17,7 +17,8 @@ class AdvertisingPictureFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'image' => $this->faker->image(),
+            'advertisement_id' => rand(1, 100),
         ];
     }
 }
