@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Models\User;
 use App\Models\RealEstateType;
 use App\Models\AdvertisingPicture;
 use App\Models\RealEstateCategory;
@@ -26,6 +27,11 @@ class Advertisement extends Model
     public function realEstateType()
     {
         return $this->belongsTo(RealEstateType::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 
     public function scopeActive($query)

@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Response;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Http\Resources\Json\JsonResource;
 
 class AppServiceProvider extends ServiceProvider
 {

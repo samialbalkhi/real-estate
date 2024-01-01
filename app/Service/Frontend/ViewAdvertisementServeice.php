@@ -2,7 +2,7 @@
 namespace App\Service\Frontend;
 
 use App\Models\Advertisement;
-use App\Http\Resources\AdvertisementResource;
+use App\Http\Resources\Frontend\AdvertisementResource;
 
 class ViewAdvertisementServeice
 {

@@ -5,7 +5,10 @@ use App\Http\Controllers\Frontend\AuthUserController;
 
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\ViewOfferController;
 use App\Http\Controllers\Frontend\VerifyCodeController;
+use App\Http\Controllers\Frontend\ShowProductController;
+use App\Http\Controllers\Frontend\ViewProductController;
 use App\Http\Controllers\Frontend\ViewSectionController;
 use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
@@ -44,6 +47,12 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
 
     Route::prefix('featured')->group(function () {
         Route::get('index', [FeaturedAdvertisementController::class, 'index']);
-        // Route::get('show/{advertisement}', [FeaturedAdvertisementController::class, 'show']);
+        Route::get('show/{advertisement}', [FeaturedAdvertisementController::class, 'show']);
+    });
+
+    Route::prefix('offersAndSpecials')->group(function () {
+        Route::get('index', ViewOfferController::class);
+        Route::get('index/{product}', ViewProductController::class);
+        Route::get('show/{product}', ShowProductController::class);
     });
 });

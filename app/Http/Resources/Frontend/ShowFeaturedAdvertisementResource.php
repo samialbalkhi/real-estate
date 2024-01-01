@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Resources;
+namespace App\Http\Resources\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class AdvertisementResource extends JsonResource
+class ShowFeaturedAdvertisementResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -27,8 +27,11 @@ class AdvertisementResource extends JsonResource
             'lng' => $this->lng,
             'price' => $this->price,
             'space' => $this->space,
-            'real_estate_category_id' => $this->real_estate_category_id,
             'created_at' => Carbon::parse($this->created_at)->diffForHumans(),
+            'user' => [
+                'name' => $this->user->name,
+                'phone' => $this->user->phone,
+            ],
             'advertisingPictures' => $this->advertisingPictures->map(function ($advertisingPictures) {
                 return [
                     'image' => $advertisingPictures->image,
