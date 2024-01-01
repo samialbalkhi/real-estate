@@ -11,19 +11,19 @@ class WishlistService
 {
     public function store(Request $request)
     {
-
         return $this->addItemAdvertisement($request);
-
     }
 
-    public function numberOfProduct()
+    public function numberOfAdvertisement()
     {
-        return Cart::instance('wishlist')
+        $numberOfAdvertisement = Cart::instance('wishlist')
             ->content()
             ->count();
+
+        return ['numberOfAdvertisement' => $numberOfAdvertisement];
     }
 
-    public function show()
+    public function index()
     {
         return Cart::instance('wishlist')->content();
     }
@@ -31,11 +31,20 @@ class WishlistService
     public function delete($rowId)
     {
         Cart::instance('wishlist')->remove($rowId);
-        return 'delete successful';
+        return ['message' => 'delete successful'];
     }
 
-    private function addItemAdvertisement($request){
-        $advertisement = Advertisement::with('realEstateType:id,name')->findOrFail($request->product_id);
+    private function addItemAdvertisement($request)
+    {
+        $advertisement = Advertisement::with('realEstateType:id,name',
+         'advertisingPictures:id,image,advertisement_id')
+         ->findOrFail($request->product_id);
+
+         $pictures = [];
+
+         foreach ($advertisement->advertisingPictures as $picture) {
+             $pictures[] = $picture->image;
+         }
 
         Cart::instance('wishlist')->add([
             'id' => $advertisement->id,
@@ -49,10 +58,8 @@ class WishlistService
             'floor_number' => $advertisement->floor_number,
             'number_of_hall' => $advertisement->number_of_hall,
             'number_of_bathroom' => $advertisement->number_of_bathroom,
-            ]
-            
+            'images' => $pictures],
         ]);
-        return 'Add successful';
-
+        return ['message' => 'Add successful'];
     }
 }

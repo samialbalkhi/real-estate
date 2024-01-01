@@ -2,10 +2,11 @@
 
 namespace App\Http\Requests\Backend;
 
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use App\helpers\ApiResponse;
 use Illuminate\Http\JsonResponse;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Http\Exceptions\HttpResponseException;
 
 class OrderRequest extends FormRequest
 {
@@ -42,12 +43,7 @@ class OrderRequest extends FormRequest
 
     public function failedValidation(Validator $validator)
     {
-        throw new HttpResponseException(
-            response()->json([
-                'success' => false,
-                'message' => 'Validation errors',
-                'data' => $validator->errors(),
-            ], JsonResponse::HTTP_UNPROCESSABLE_ENTITY)
-        );
+        return ApiResponse::failedValidation($validator);
+
     }
 }

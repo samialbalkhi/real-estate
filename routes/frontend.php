@@ -10,6 +10,7 @@ use App\Http\Controllers\Frontend\ViewSectionController;
 use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
 use App\Http\Controllers\Frontend\ViewAdvertisementController;
+use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
 use App\Http\Controllers\Frontend\SendVerificationEmailController;
 
 Route::prefix('user')->group(function () {
@@ -34,11 +35,15 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
         Route::group(['prefix' => 'wishlist'], function () {
             Route::controller(WishlistController::class)->group(function () {
                 Route::post('/store', 'store');
-                Route::get('/numberOfProduct', 'numberOfProduct');
-                Route::get('/show', 'show');
-                Route::get('/subtotal', 'subtotal');
+                Route::get('/numberOfAdvertisement', 'numberOfAdvertisement');
+                Route::get('/index', 'index');
                 Route::delete('/delete/{rowId}', 'delete');
             });
         });
+    });
+
+    Route::prefix('featured')->group(function () {
+        Route::get('index', [FeaturedAdvertisementController::class, 'index']);
+        // Route::get('show/{advertisement}', [FeaturedAdvertisementController::class, 'show']);
     });
 });

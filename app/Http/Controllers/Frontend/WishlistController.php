@@ -16,13 +16,13 @@ class WishlistController extends Controller
         return response()->json($this->wishlistService->store($request));
     }
 
-    public function  numberOfProduct()
+    public function  numberOfAdvertisement()
     {
-        return $this->wishlistService->numberOfProduct();
+        return $this->wishlistService->numberOfAdvertisement();
     }
-    public function  show()
+    public function  index()
     {
-        return $this->wishlistService->show();
+        return $this->wishlistService->index();
     }
   
     public function  delete($rowId)

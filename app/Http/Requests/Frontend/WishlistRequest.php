@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests\Frontend;
 
 use App\helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Validation\Rule;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 
-class SectionRequest extends FormRequest
+class WishlistRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,19 +25,9 @@ class SectionRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-
-        $rules = [
-            'name' => ['required', 'unique:sections,name', 'max:30', 'min:3', 'alpha'],
-            'status' => ['nullable', 'boolean'],
+        return [
+            'product_id'=>['required','numeric']
         ];
-
-        if (Request::route()->getName() == 'sections.update') {
-            $rules['name'] = ['required', 'max:30', 'min:3', 'alpha',
-                Rule::unique('sections', 'name')->ignore($this->section->id)];
-        }
-
-        return $rules;
     }
 
     public function failedValidation(Validator $validator)

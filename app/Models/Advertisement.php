@@ -27,4 +27,16 @@ class Advertisement extends Model
     {
         return $this->belongsTo(RealEstateType::class);
     }
+
+    public function scopeActive($query)
+    {
+        return $query->whereFeatured(true);
+    }
+
+    // public function scopeActive($query)
+    // {
+    //     return $query->whereStatus(true);
+    // }
+
+
 }
