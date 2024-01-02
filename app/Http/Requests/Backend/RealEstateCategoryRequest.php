@@ -3,12 +3,10 @@
 namespace App\Http\Requests\Backend;
 
 use App\helpers\ApiResponse;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
 
 class RealEstateCategoryRequest extends FormRequest
 {

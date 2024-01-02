@@ -3,8 +3,8 @@
 namespace App\Http\Resources\Frontend;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
+use Illuminate\Support\Carbon;
 
 class ShowFeaturedAdvertisementResource extends JsonResource
 {
@@ -23,6 +23,7 @@ class ShowFeaturedAdvertisementResource extends JsonResource
             'number_of_hall' => $this->number_of_hall,
             'number_of_bathroom' => $this->number_of_bathroom,
             'floor_number' => $this->floor_number,
+            'rental_period' => $this->rental_period,
             'lat' => $this->lat,
             'lng' => $this->lng,
             'price' => $this->price,
@@ -31,6 +32,12 @@ class ShowFeaturedAdvertisementResource extends JsonResource
             'user' => [
                 'name' => $this->user->name,
                 'phone' => $this->user->phone,
+            ],
+            'realEstateType' => [
+                'name' => $this->realEstateType->name,
+            ],
+            'realEstateCategory' => [
+                'name' => $this->realEstateCategory->name,
             ],
             'advertisingPictures' => $this->advertisingPictures->map(function ($advertisingPictures) {
                 return [

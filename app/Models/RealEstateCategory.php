@@ -2,19 +2,19 @@
 
 namespace App\Models;
 
-use App\Models\Advertisement;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class RealEstateCategory extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function Advertisement()
+    public function Advertisements()
     {
-        return $this->belongsTo(Advertisement::class);
+        return $this->hasMany(Advertisement::class);
     }
+
     public function scopeActive($query)
     {
         return $query->whereStatus(true);

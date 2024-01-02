@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests\Backend;
 
+use App\helpers\ApiResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use App\helpers\ApiResponse;
 
 class OfferRequest extends FormRequest
 {

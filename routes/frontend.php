@@ -1,20 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\AuthUserController;
-
+use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
 use App\Http\Controllers\Frontend\RegisterController;
-use App\Http\Controllers\Frontend\WishlistController;
-use App\Http\Controllers\Frontend\ViewOfferController;
-use App\Http\Controllers\Frontend\VerifyCodeController;
+use App\Http\Controllers\Frontend\SendVerificationEmailController;
 use App\Http\Controllers\Frontend\ShowProductController;
-use App\Http\Controllers\Frontend\ViewProductController;
-use App\Http\Controllers\Frontend\ViewSectionController;
+use App\Http\Controllers\Frontend\VerifyCodeController;
+use App\Http\Controllers\Frontend\ViewAdvertisementController;
+use App\Http\Controllers\Frontend\ViewAllAdvertisementController;
 use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
-use App\Http\Controllers\Frontend\ViewAdvertisementController;
-use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
-use App\Http\Controllers\Frontend\SendVerificationEmailController;
+use App\Http\Controllers\Frontend\ViewOfferController;
+use App\Http\Controllers\Frontend\ViewProductController;
+use App\Http\Controllers\Frontend\ViewSectionController;
+use App\Http\Controllers\Frontend\WishlistController;
+use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->group(function () {
     Route::post('login', AuthUserController::class);
@@ -37,10 +37,10 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
     Route::group(['middleware' => ['web']], function () {
         Route::group(['prefix' => 'wishlist'], function () {
             Route::controller(WishlistController::class)->group(function () {
-                Route::post('/store', 'store');
-                Route::get('/numberOfAdvertisement', 'numberOfAdvertisement');
-                Route::get('/index', 'index');
-                Route::delete('/delete/{rowId}', 'delete');
+                Route::post('store', 'store');
+                Route::get('numberOfAdvertisement', 'numberOfAdvertisement');
+                Route::get('index', 'index');
+                Route::delete('delete/{rowId}', 'delete');
             });
         });
     });
@@ -55,4 +55,9 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
         Route::get('index/{product}', ViewProductController::class);
         Route::get('show/{product}', ShowProductController::class);
     });
+
+    Route::prefix('allAdvertisement')->group(function () {
+        Route::get('index', ViewAllAdvertisementController::class);
+    });
+    
 });

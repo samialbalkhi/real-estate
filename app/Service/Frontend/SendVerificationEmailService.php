@@ -2,9 +2,9 @@
 
 namespace App\Service\Frontend;
 
-use App\Models\ValidationCode;
-use App\Jobs\SendVerificationCode;
 use App\Http\Requests\Frontend\SendCodeRequest;
+use App\Jobs\SendVerificationCode;
+use App\Models\ValidationCode;
 
 class SendVerificationEmailService
 {

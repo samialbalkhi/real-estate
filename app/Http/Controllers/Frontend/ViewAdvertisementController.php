@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
-use App\Models\Advertisement;
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Service\Frontend\ViewAdvertisementServeice;
+use Illuminate\Http\Request;
 
 class ViewAdvertisementController extends Controller
 {

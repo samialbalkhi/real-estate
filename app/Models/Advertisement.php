@@ -2,21 +2,17 @@
 
 namespace App\Models;
 
-use App\Models\User;
-use App\Models\RealEstateType;
-use App\Models\AdvertisingPicture;
-use App\Models\RealEstateCategory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class Advertisement extends Model
 {
     use HasFactory;
     protected $guarded = [];
 
-    public function realEstateCategories()
+    public function realEstateCategory()
     {
-        return $this->hasMany(RealEstateCategory::class);
+        return $this->belongsTo(RealEstateCategory::class);
     }
 
     public function advertisingPictures()
@@ -34,15 +30,13 @@ class Advertisement extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function scopeActive($query)
+    public function scopeFeatured($query)
     {
         return $query->whereFeatured(true);
     }
 
-    // public function scopeActive($query)
-    // {
-    //     return $query->whereStatus(true);
-    // }
-
-
+    public function scopeActive($query)
+    {
+        return $query->whereStatus(true);
+    }
 }

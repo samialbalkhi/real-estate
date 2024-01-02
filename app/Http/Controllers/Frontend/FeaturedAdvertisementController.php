@@ -2,9 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
-use App\Models\Advertisement;
 use App\Http\Controllers\Controller;
+use App\Models\Advertisement;
 use App\Service\Frontend\FeaturedAdvertisementService;
 
 class FeaturedAdvertisementController extends Controller
@@ -12,6 +11,7 @@ class FeaturedAdvertisementController extends Controller
     public function __construct(private FeaturedAdvertisementService $featuredAdvertisementService)
     {
     }
+
     public function index()
     {
         return response()->json(

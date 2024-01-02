@@ -2,13 +2,11 @@
 
 namespace App\Http\Requests\Backend;
 
-use App\Rules\Phone;
 use App\helpers\ApiResponse;
-use Illuminate\Validation\Rule;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Phone;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class UpdateProfileRequest extends FormRequest
 {

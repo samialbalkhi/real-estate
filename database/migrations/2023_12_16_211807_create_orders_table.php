@@ -1,11 +1,11 @@
 <?php
 
-use App\Models\User;
-use App\Models\RealEstateType;
 use App\Models\RealEstateCategory;
-use Illuminate\Support\Facades\Schema;
-use Illuminate\Database\Schema\Blueprint;
+use App\Models\RealEstateType;
+use App\Models\User;
 use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
@@ -28,7 +28,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-                $table->foreignIdFor(RealEstateCategory::class)
+            $table->foreignIdFor(RealEstateCategory::class)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

@@ -2,8 +2,8 @@
 
 namespace App\Service\ForgetPassowrd;
 
-use Illuminate\Support\Facades\Password;
 use App\Http\Requests\ForgetPasswordRequest;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Validation\ValidationException;
 
 class ForgetPasswordService

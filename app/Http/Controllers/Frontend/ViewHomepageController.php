@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Frontend\ViewHomepageService;
+use Illuminate\Http\Request;
 
 class ViewHomepageController extends Controller
 {

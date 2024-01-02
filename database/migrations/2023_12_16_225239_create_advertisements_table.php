@@ -38,7 +38,7 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();
 
-                $table->foreignIdFor(RealEstateCategory::class)
+            $table->foreignIdFor(RealEstateCategory::class)
                 ->constrained()
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate();

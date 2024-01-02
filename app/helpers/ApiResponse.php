@@ -2,10 +2,10 @@
 
 namespace App\helpers;
 
-use Illuminate\Http\Response;
-use Illuminate\Http\JsonResponse;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Response;
 
 class ApiResponse
 {

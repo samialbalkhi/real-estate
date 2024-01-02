@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Service\ForgetPassowrd;
 
-use Illuminate\Support\Str;
 use App\helpers\ApiResponse;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Auth\Events\PasswordReset;
 use App\Http\Requests\ResetPasswordRequest;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Str;
 
 class ResetPasswordService
 {
@@ -28,11 +29,11 @@ class ResetPasswordService
     protected function updatePassword(ResetPasswordRequest $request)
     {
         return Password::reset($request->only('email', 'password', 'password_confirmation', 'token'),
-         function ($user) use ($request) {
-            $this->updateUserPassword($user, $request->password);
-            $this->deleteUserTokens($user);
-            $this->triggerPasswordResetEvent($user);
-        });
+            function ($user) use ($request) {
+                $this->updateUserPassword($user, $request->password);
+                $this->deleteUserTokens($user);
+                $this->triggerPasswordResetEvent($user);
+            });
     }
 
     protected function updateUserPassword($user, $password)
@@ -44,10 +45,12 @@ class ResetPasswordService
             ])
             ->save();
     }
+
     protected function deleteUserTokens($user)
     {
         $user->tokens()->delete();
     }
+
     protected function triggerPasswordResetEvent($user)
     {
         event(new PasswordReset($user));

@@ -2,12 +2,10 @@
 
 namespace App\Http\Requests\Frontend;
 
-use App\Rules\Phone;
 use App\helpers\ApiResponse;
-use Illuminate\Http\JsonResponse;
-use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\Phone;
 use Illuminate\Contracts\Validation\Validator;
-use Illuminate\Http\Exceptions\HttpResponseException;
+use Illuminate\Foundation\Http\FormRequest;
 
 class RegisterRequest extends FormRequest
 {

@@ -23,8 +23,8 @@ class ShowProductSevice
             ];
         }
 
-        return $product->only(['id', 'name', 'image', 
-        'location', 'description', 
-        'price', 'product_discount']);
-    }   
+        return $product->only(['id', 'name', 'image',
+            'location', 'description',
+            'price', 'product_discount']);
+    }
 }

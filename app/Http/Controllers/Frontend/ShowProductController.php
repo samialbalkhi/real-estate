@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Service\Frontend\ShowProductSevice;
+use Illuminate\Http\Request;
 
 class ShowProductController extends Controller
 {
