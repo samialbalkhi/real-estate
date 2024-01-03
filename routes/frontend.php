@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Frontend\AuthUserController;
 use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\WishlistController;
+use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\ViewOfferController;
 use App\Http\Controllers\Frontend\VerifyCodeController;
 use App\Http\Controllers\Frontend\ShowProductController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\Frontend\ViewProductController;
 use App\Http\Controllers\Frontend\ViewSectionController;
 use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
+use App\Http\Controllers\Frontend\FinanceCalculatorController;
 use App\Http\Controllers\Frontend\ShowAdvertisementController;
 use App\Http\Controllers\Frontend\ViewAdvertisementController;
 use App\Http\Controllers\Frontend\ViewAllAdvertisementController;
@@ -61,4 +63,10 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
         Route::get('index', ViewAllAdvertisementController::class);
         Route::get('show/{advertisement}', ShowAdvertisementController::class);
     });
+
+    Route::prefix('order')->group(function () {
+        Route::resource('userOrders', UserOrderController::class);
+    });
+
+    Route::post('/finance', [FinanceCalculatorController::class, 'index']);
 });

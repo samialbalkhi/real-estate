@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Requests\Backend;
+namespace App\Http\Requests\Frontend;
 
 use App\helpers\ApiResponse;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 
-class OrderRequest extends FormRequest
+class FinanceCalculatorRequeset extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,20 +23,12 @@ class OrderRequest extends FormRequest
      */
     public function rules(): array
     {
-        $rules = [];
-
-        $rules = [
-            'lat' => ['required'],
-            'lng' => ['required'],
-            'highest_price' => ['required', 'numeric'],
-            'lowest_price' => ['required', 'numeric'],
-            'highest_space' => ['required', 'numeric'],
-            'lowest_space' => ['required', 'numeric'],
-            'real_estate_type_id' => ['required'],
-            'real_estate_category_id' => ['required'],
+        return [
+            'property_value' => ['required', 'numeric', 'min:1'],
+            'loan_term_id' => ['required'],
+            'down_payment_percentage' => ['required', 'numeric', 'min:0'],
+            'employment_status' => ['required', 'alpha', 'min:3', 'max:30'],
         ];
-
-        return $rules;
     }
 
     public function failedValidation(Validator $validator)
