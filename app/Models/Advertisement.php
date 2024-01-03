@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
+use App\Models\View;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Advertisement extends Model
 {
@@ -28,6 +29,11 @@ class Advertisement extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function views()
+    {
+        return $this->hasMany(View::class);
     }
 
     public function scopeFeatured($query)

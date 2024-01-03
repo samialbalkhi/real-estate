@@ -31,6 +31,7 @@ return new class extends Migration
             $table->foreignIdFor(RealEstateCategory::class)
                 ->constrained()
                 ->cascadeOnDelete()
+                
                 ->cascadeOnUpdate();
             $table->timestamps();
         });
