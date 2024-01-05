@@ -1,5 +1,6 @@
 <?php
 namespace App\Service\Frontend;
+use Spatie\Activitylog\Models\Activity;
 
 use App\Models\View;
 use App\Models\Advertisement;
@@ -9,20 +10,26 @@ class ShowAdvertisementService
 {
     public function show(Advertisement $advertisement)
     {
-        if (!$this->existingView($advertisement)) {
-            View::create([
-                'user_id' => auth()->user()->id,
-                'advertisement_id' => $advertisement->id,
-            ]);
-        }
+        activity()
+            ->causedBy(auth()->user())
+            ->performedOn($advertisement)
+            ->log('view');
+
+        $this->createOrUpdateView($advertisement);
 
         return new ShowAdvertisementResource($advertisement);
     }
 
-    private function existingView($advertisement)
+    private function createOrUpdateView($advertisement)
     {
-        return View::where('user_id', auth()->user()->id)
-            ->where('advertisement_id', $advertisement->id)
-            ->first();
+        $view = View::updateOrCreate(
+            [
+                'user_id' => auth()->user()->id,
+                'advertisement_id' => $advertisement->id,
+            ],
+            [],
+        );
+
+        return $view;
     }
 }

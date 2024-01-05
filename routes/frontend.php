@@ -18,6 +18,8 @@ use App\Http\Controllers\Frontend\ViewAdvertisementController;
 use App\Http\Controllers\Frontend\ViewAllAdvertisementController;
 use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
 use App\Http\Controllers\Frontend\SendVerificationEmailController;
+use App\Http\Controllers\Frontend\GetSimilarAdvertisementController;
+use App\Http\Controllers\Frontend\ViewLatestAdvertisementController;
 
 Route::prefix('user')->group(function () {
     Route::post('login', AuthUserController::class);
@@ -68,5 +70,9 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
         Route::resource('userOrders', UserOrderController::class);
     });
 
-    Route::post('/finance', [FinanceCalculatorController::class, 'index']);
+    Route::post('financeCalculator', FinanceCalculatorController::class);
+
+    Route::get('viewLatestAdvertisement', ViewLatestAdvertisementController::class);
+
+    Route::get('getSimilarAdvertisement/{advertisement}', GetSimilarAdvertisementController::class);
 });

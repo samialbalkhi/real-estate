@@ -157,6 +157,7 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+
         /*
          * Package Service Providers...
          */

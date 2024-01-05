@@ -39,6 +39,7 @@ class ShowAdvertisementResource extends JsonResource
             'realEstateCategory' => [
                 'name' => $this->realEstateCategory->name,
             ],
+
             'advertisingPictures' => $this->advertisingPictures->map(function ($advertisingPictures) {
                 return [
                     'image' => $advertisingPictures->image,
