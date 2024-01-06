@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use App\Models\Order;
+use App\Models\Report;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Notifications\Notifiable;
@@ -55,5 +56,10 @@ class User extends Authenticatable
     public function advertisements()
     {
         return $this->hasMany(Advertisement::class);
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 }

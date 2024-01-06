@@ -2,10 +2,11 @@
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\Response;
-use Illuminate\Support\ServiceProvider;
-use Laravel\Sanctum\PersonalAccessToken;
 use Laravel\Sanctum\Sanctum;
+use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\Facades\Response;
+use Laravel\Sanctum\PersonalAccessToken;
+use Illuminate\Database\Eloquent\Relations\Relation;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -25,12 +26,14 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-
         Response::macro('data', function ($key, $message, $statusCode = 200) {
-            return response()->baseResponse([
-                'key' => $key,
-                'message' => $message,
-            ], $statusCode);
+            return response()->baseResponse(
+                [
+                    'key' => $key,
+                    'message' => $message,
+                ],
+                $statusCode,
+            );
         });
 
         Response::macro('baseResponse', function ($data, $statusCode = 200, $contentType = 'application/json') {

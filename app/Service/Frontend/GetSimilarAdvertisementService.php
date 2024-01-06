@@ -9,20 +9,10 @@ class GetSimilarAdvertisementService
 {
     public function getSimilarAdvertisement(Advertisement $advertisement)
     {
-        $userViews = Activity::where('subject_type', View::class)
-            ->where('causer_id', auth()->user()->id)
-            ->where('log_name', 'default')
-            ->get();
-        dd($userViews);
-        // Extract advertisement IDs from the userViews collection
-        $advertisementIds = $userViews->pluck('subject_id')->toArray();
-
-        // Retrieve similar ads based on the user's viewed advertisements
-        $similarAdvertisements = Advertisement::whereIn('id', $advertisementIds)
-            ->where('id', '!=', $advertisement->id)
+        return Advertisement::where('id', '!=', $advertisement->id)
+            ->whereBetween('width_street', [$advertisement->width_street - 5, $advertisement->width_street + 5])
+            ->where('number_of_room', $advertisement->number_of_room)
             ->limit(5)
-            ->get();
-
-        return $similarAdvertisements->toArray();
+            ->paginate(5);
     }
 }

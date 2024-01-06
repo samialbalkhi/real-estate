@@ -6,6 +6,8 @@ use App\Http\Controllers\Frontend\RegisterController;
 use App\Http\Controllers\Frontend\WishlistController;
 use App\Http\Controllers\Frontend\UserOrderController;
 use App\Http\Controllers\Frontend\ViewOfferController;
+use App\Http\Controllers\Frontend\UserReportController;
+use App\Http\Controllers\Frontend\UserReviewController;
 use App\Http\Controllers\Frontend\VerifyCodeController;
 use App\Http\Controllers\Frontend\ShowProductController;
 use App\Http\Controllers\Frontend\ViewProductController;
@@ -75,4 +77,10 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
     Route::get('viewLatestAdvertisement', ViewLatestAdvertisementController::class);
 
     Route::get('getSimilarAdvertisement/{advertisement}', GetSimilarAdvertisementController::class);
+
+    Route::post('rating', UserReviewController::class);
+
+    Route::post('report',UserReportController::class);
+    
+
 });
