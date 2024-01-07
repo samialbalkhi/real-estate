@@ -5,7 +5,7 @@ use App\Models\Report;
 use App\helpers\ApiResponse;
 use App\Events\ReportCreated;
 use App\Http\Requests\Frontend\ReportRequest;
-
+use App\Listeners\CheckUserReport;
 class UserReportService
 {
     public function store(ReportRequest $request)
@@ -19,8 +19,7 @@ class UserReportService
             'user_id' => auth()->user()->id,
             'reported_user_id' => $request->reported_user_id,
         ]);
-
-        event(new ReportCreated($report));
+        ReportCreated::dispatch($report);
 
         return ApiResponse::createSuccessResponse();
     }
@@ -34,8 +33,9 @@ class UserReportService
     public function erorrResponse()
     {
         return response()->data(
-            key: 'error', 
+            key: 'error',
             message: 'You have already submitted a report for this user.',
-            statusCode: 422);
+            statusCode: 422
+        );
     }
 }

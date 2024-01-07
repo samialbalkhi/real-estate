@@ -18,20 +18,10 @@ class ReportCreated
     /**
      * Create a new event instance.
      */
-    public $report;
 
-    public function __construct(Report $report)
+    public function __construct(public Report $report)
     {
-        $this->report = $report;
     }
 
-    /**
-     * Get the channels the event should broadcast on.
-     *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
-     */
-    public function broadcastOn(): array
-    {
-        return [new PrivateChannel('channel-name')];
-    }
+   
 }

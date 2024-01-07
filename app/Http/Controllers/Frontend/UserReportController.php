@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
+
+use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use App\Service\Frontend\UserReportService;
 use App\Http\Requests\Frontend\ReportRequest;
@@ -14,6 +15,8 @@ class UserReportController extends Controller
      */
     public function __invoke(ReportRequest $request,UserReportService $userReportService)
     {
+        
+        Log::debug('__invoke.');
         return $userReportService->store($request);
     }
 }

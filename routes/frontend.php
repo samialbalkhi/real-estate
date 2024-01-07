@@ -80,7 +80,5 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
 
     Route::post('rating', UserReviewController::class);
 
-    Route::post('report',UserReportController::class);
-    
-
+    Route::post('report', UserReportController::class);
 });
