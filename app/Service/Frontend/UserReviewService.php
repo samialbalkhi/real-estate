@@ -9,15 +9,16 @@ class UserReviewService
 {
     public function store(ReviewRequest $request)
     {
-        if ($this->existsReating($request)) 
-        
-        return $this->erorrResponse() ;
+        if ($this->existsReating($request)) {
+            return $this->existsReatingErorr();
+        }
 
-        Review::create([
-            'rating' => $request->rating,
-            'user_id' => auth()->user()->id,
-            'rated_user_id' => $request->rated_user_id,
-        ]);
+        if ($this->existsUser($request)) {
+            return $this->existsUserErorr();
+        }
+        
+        Review::create(['user_id' => auth()->user()->id]
+        +$request->validated());
 
         return ApiResponse::createSuccessResponse();
     }
@@ -29,10 +30,23 @@ class UserReviewService
             ->exists();
     }
 
-    public function erorrResponse()
+    private function existsReatingErorr()
     {
         return response()->data(key: 'error',
-         message: 'You have already submitted a review for this user.',
-          statusCode: 422);
+        message: 'You have already submitted a review for this user.',
+        statusCode: 422);
+    }
+
+    private function existsUser($request)
+    {
+        return Review::userExist($request->rated_user_id)->exists();
+    }
+
+    private function existsUserErorr()
+    {
+        return response()->data(key: 'error',
+        message: 'You cannot evaluate yourself',
+        statusCode: 422);
+
     }
 }

@@ -13,6 +13,7 @@ trait ImageUpload
             ->store($folder, 'public');
 
         return $path;
+        
     }
 
     public function deleteImage($folder)

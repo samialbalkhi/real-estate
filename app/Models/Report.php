@@ -27,4 +27,9 @@ class Report extends Model
     {
         return Carbon::parse($value)->format('Y-m-d');
     }
+
+     public function scopeUserExist($query, $reported_user_id)
+    {
+        return $query->where('user_id', $reported_user_id);
+    }
 }

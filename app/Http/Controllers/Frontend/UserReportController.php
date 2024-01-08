@@ -16,7 +16,6 @@ class UserReportController extends Controller
     public function __invoke(ReportRequest $request,UserReportService $userReportService)
     {
         
-        Log::debug('__invoke.');
         return $userReportService->store($request);
     }
 }

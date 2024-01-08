@@ -11,17 +11,28 @@ class UserReportService
     public function store(ReportRequest $request)
     {
         if ($this->existsReport($request)) {
-            return $this->erorrResponse();
+            return $this->existsReportErorr();
+        }
+        if ($this->UserExist($request)) {
+            return $this->UserExistErorr();
         }
 
-        $report = Report::create([
-            'reason' => $request->reason,
-            'user_id' => auth()->user()->id,
-            'reported_user_id' => $request->reported_user_id,
-        ]);
+        $report = Report::create(['user_id' => auth()->user()->id] + $request->validated());
+
         ReportCreated::dispatch($report);
 
         return ApiResponse::createSuccessResponse();
+    }
+
+    private function existsReportErorr()
+    {
+        return response()->data(key: 'error',
+        message: 'You have already submitted a report for this user.', 
+        statusCode: 422);
+    }
+    private function UserExist($request)
+    {
+        return Report::userExist($request->reported_user_id)->exists();
     }
 
     private function existsReport($request)
@@ -30,12 +41,11 @@ class UserReportService
             ->where('reported_user_id', $request->reported_user_id)
             ->exists();
     }
-    public function erorrResponse()
+
+    public function UserExistErorr()
     {
-        return response()->data(
-            key: 'error',
-            message: 'You have already submitted a report for this user.',
-            statusCode: 422
-        );
+        return response()->data(key: 'error', 
+        message: 'You cannot report yourself', 
+        statusCode: 422);
     }
 }

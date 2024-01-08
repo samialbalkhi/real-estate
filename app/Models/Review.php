@@ -14,4 +14,9 @@ class Review extends Model
     {
         return $this->hasMany(User::class);
     }
+
+    public function scopeUserExist($query, $rated_user_id)
+    {
+        return $query->where('user_id', $rated_user_id);
+    }
 }

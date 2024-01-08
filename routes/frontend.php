@@ -16,6 +16,7 @@ use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
 use App\Http\Controllers\Frontend\FinanceCalculatorController;
 use App\Http\Controllers\Frontend\ShowAdvertisementController;
+use App\Http\Controllers\Frontend\UserAdvertisementController;
 use App\Http\Controllers\Frontend\ViewAdvertisementController;
 use App\Http\Controllers\Frontend\ViewAllAdvertisementController;
 use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
@@ -81,4 +82,6 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
     Route::post('rating', UserReviewController::class);
 
     Route::post('report', UserReportController::class);
+
+    Route::resource('userAdvertisements',UserAdvertisementController::class);
 });
