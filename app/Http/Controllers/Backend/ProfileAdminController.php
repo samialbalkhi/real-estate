@@ -14,22 +14,16 @@ class ProfileAdminController extends Controller
 
     public function getProfile()
     {
-        return response()->json(
-            $this->profileAdminService->getProfile()
-        );
+        return response()->json($this->profileAdminService->getProfile());
     }
 
     public function profileAdmin(UpdateProfileRequest $request)
     {
-        return response()->json(
-            $this->profileAdminService->profileAdmin($request)
-        );
+        return response()->json($this->profileAdminService->profileAdmin($request));
     }
 
     public function logout()
     {
-        return response()->json(
-            $this->profileAdminService->logout()
-        );
+        return response()->json($this->profileAdminService->logout());
     }
 }

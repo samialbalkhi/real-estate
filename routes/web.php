@@ -14,5 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
+    notify()->success('Laravel Notify is awesome!');
+
     return view('welcome');
 });

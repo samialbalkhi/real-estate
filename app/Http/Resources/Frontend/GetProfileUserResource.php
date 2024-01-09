@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Backend;
+namespace App\Http\Resources\Frontend;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GetProfileAdminResource extends JsonResource
+class GetProfileUserResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -19,7 +19,7 @@ class GetProfileAdminResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'image' => $this->image,
-            'phone' => $this->phone,
+            'phone'=>$this->phone,
             'created_at' => $this->created_at->format('m/d/Y'),
             'account_types' => $this->accountTypes->map(function ($accountType) {
                 return [

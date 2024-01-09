@@ -28,7 +28,7 @@ class ResetPasswordService
 
     protected function updatePassword(ResetPasswordRequest $request)
     {
-        return Password::reset($request->only('email', 'password', 'password_confirmation', 'token'),
+        return Password::reset($request->only('email', 'password', 'token'),
             function ($user) use ($request) {
                 $this->updateUserPassword($user, $request->password);
                 $this->deleteUserTokens($user);

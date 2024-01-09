@@ -157,6 +157,8 @@ return [
 
     'providers' => ServiceProvider::defaultProviders()->merge([
         Gloudemans\Shoppingcart\ShoppingcartServiceProvider::class,
+        Mckenziearts\Notify\LaravelNotifyServiceProvider::class,
+
 
         /*
          * Package Service Providers...

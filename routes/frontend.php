@@ -9,9 +9,11 @@ use App\Http\Controllers\Frontend\ViewOfferController;
 use App\Http\Controllers\Frontend\UserReportController;
 use App\Http\Controllers\Frontend\UserReviewController;
 use App\Http\Controllers\Frontend\VerifyCodeController;
+use App\Http\Controllers\Frontend\ProfileUserController;
 use App\Http\Controllers\Frontend\ShowProductController;
 use App\Http\Controllers\Frontend\ViewProductController;
 use App\Http\Controllers\Frontend\ViewSectionController;
+use App\Http\Controllers\Frontend\NotificationController;
 use App\Http\Controllers\Frontend\ViewCategoryController;
 use App\Http\Controllers\Frontend\ViewHomepageController;
 use App\Http\Controllers\Frontend\FinanceCalculatorController;
@@ -83,5 +85,12 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
 
     Route::post('report', UserReportController::class);
 
-    Route::resource('userAdvertisements',UserAdvertisementController::class);
+    Route::resource('userAdvertisements', UserAdvertisementController::class);
+
+    Route::get('getProfileUser', [ProfileUserController::class, 'getProfileUser']);
+    Route::post('profileUser', [ProfileUserController::class, 'profileUser']);
+    Route::get('logoutUser', [ProfileUserController::class, 'logoutUser']);
+
+    Route::get('notifications',NotificationController::class);
 });
+    

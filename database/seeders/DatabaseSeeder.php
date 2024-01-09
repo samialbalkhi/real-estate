@@ -32,7 +32,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'admin',
             'email' => 'admin@gmail.com',
             'password' => 'password',
-            'password_confirmation' => bcrypt('password'),
             'phone' => '123',
         ]);
 
@@ -40,7 +39,6 @@ class DatabaseSeeder extends Seeder
             'name' => 'user',
             'email' => 'user@gmail.com',
             'password' => 'password',
-            'password_confirmation' => bcrypt('password'),
             'phone' => '123213312',
         ]);
 

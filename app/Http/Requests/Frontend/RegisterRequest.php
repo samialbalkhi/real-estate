@@ -30,7 +30,6 @@ class RegisterRequest extends FormRequest
             'phone' => ['required', new Phone, 'unique:users,phone'],
             'image' => ['nullable', 'image'],
             'password' => ['sometimes', 'required', 'min:3', 'max:30', 'confirmed'],
-            'password_confirmation' => ['sometimes', 'required', 'min:8'],
         ];
     }
 

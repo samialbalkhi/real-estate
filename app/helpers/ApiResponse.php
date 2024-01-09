@@ -11,12 +11,12 @@ class ApiResponse
 {
     public static function updateSuccessResponse($message = 'updated successfully')
     {
-        return response()->json(['message' => $message]);
+        return ['message' => $message];
     }
 
     public static function deleteSuccessResponse($message = 'deleted successfully')
     {
-        return response()->json(['message' => $message]);
+        return ['message' => $message];
     }
 
     public static function createSuccessResponse($message = 'create successfully')

@@ -8,17 +8,17 @@ trait ImageUpload
 {
     public function uploadImage($folder)
     {
-        $path = request()
-            ->file('image')
-            ->store($folder, 'public');
-
-        return $path;
+        if (request()->file('image'))
+            return request()
+                ->file('image')
+                ->store($folder, 'public');
         
+
+        return null;
     }
 
     public function deleteImage($folder)
     {
-
         if (Storage::exists('public/' . $folder->image)) {
             Storage::delete('public/' . $folder->image);
         }
