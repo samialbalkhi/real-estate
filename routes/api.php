@@ -14,14 +14,14 @@ use App\Http\Controllers\Backend\RealEstateCategoryController;
 use App\Http\Controllers\Backend\RealEstateTypeController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\ReviewController;
-use App\Http\Controllers\Backend\SectionController;
 use App\Http\Controllers\Backend\UserCountController;
 use App\Http\Controllers\ForgetPasswordController;
 use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+});
 
 Route::post('login', AuthAdminController::class);
 
@@ -29,7 +29,6 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::get('edit/{homePageContent}', [HomePageContentController::class, 'edit']);
     Route::post('update/{homePageContent}', [HomePageContentController::class, 'update']);
 
-    Route::resource('sections', SectionController::class);
     Route::resource('accountTypes', AccountTypeController::class);
     Route::resource('realEstateCategories', RealEstateCategoryController::class);
     Route::get('realEstateTypes', RealEstateTypeController::class);

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\OfferRequest;
 use App\Models\Offer;
 use App\Service\Backend\OfferService;
+use Illuminate\Http\Response;
 
 class OfferController extends Controller
 {
@@ -21,9 +21,9 @@ class OfferController extends Controller
 
     public function store(OfferRequest $request)
     {
-        $this->offerService->store($request);
+        return response()->json(
+            $this->offerService->store($request), Response::HTTP_CREATED);
 
-        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(Offer $offer)
@@ -33,16 +33,14 @@ class OfferController extends Controller
 
     public function update(OfferRequest $request, Offer $offer)
     {
-        $this->offerService->update($request, $offer);
+        return response()->json($this->offerService->update($request, $offer));
 
-        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(Offer $offer)
     {
 
-        $this->offerService->destroy($offer);
+        return response()->json($this->offerService->destroy($offer));
 
-        return ApiResponse::deleteSuccessResponse();
     }
 }

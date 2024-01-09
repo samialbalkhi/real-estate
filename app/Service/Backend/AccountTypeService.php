@@ -2,6 +2,7 @@
 
 namespace App\Service\Backend;
 
+use App\helpers\ApiResponse;
 use App\Http\Requests\Backend\AccountTypeRequest;
 use App\Models\AccountType;
 use App\Traits\ImageUpload;
@@ -15,14 +16,16 @@ class AccountTypeService
         return AccountType::all();
     }
 
-    public function store(AccountTypeRequest $request): AccountType
+    public function store(AccountTypeRequest $request)
     {
-        return AccountType::create(
+        AccountType::create(
             [
                 'image' => $this->uploadImage('account_type'),
                 'user_id' => auth()->user()->id,
-            ] + $request->validated()
+            ] + $request->validated(),
         );
+
+        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(AccountType $accountType)
@@ -38,14 +41,17 @@ class AccountTypeService
             [
                 'image' => $this->uploadImage('account_type'),
                 'user_id' => auth()->user()->id,
-            ] + $request->validated()
+            ] + $request->validated(),
         );
+
+        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(AccountType $accountType)
     {
         $this->deleteImage($accountType);
-
         $accountType->delete();
+
+        return ApiResponse::deleteSuccessResponse();
     }
 }

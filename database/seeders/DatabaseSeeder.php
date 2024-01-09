@@ -16,7 +16,6 @@ use App\Models\RealEstateCategory;
 use App\Models\RealEstateType;
 use App\Models\Report;
 use App\Models\Review;
-use App\Models\Section;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -43,7 +42,6 @@ class DatabaseSeeder extends Seeder
         ]);
 
         HomePageContent::factory(1)->create();
-        Section::factory(10)->create();
         AccountType::factory(5)->create();
         RealEstateCategory::factory(20)->create();
         RealEstateType::factory(2)->create();

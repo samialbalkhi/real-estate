@@ -3,8 +3,8 @@
 namespace App\Http\Requests\Frontend;
 
 use App\helpers\ApiResponse;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
 
 class FinanceCalculatorRequeset extends FormRequest
 {

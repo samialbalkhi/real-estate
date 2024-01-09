@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service\Frontend;
 
 use App\Http\Resources\Frontend\ViewLatestAdvertisementResource;

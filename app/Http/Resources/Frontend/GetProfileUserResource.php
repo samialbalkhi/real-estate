@@ -19,7 +19,7 @@ class GetProfileUserResource extends JsonResource
             'name' => $this->name,
             'email' => $this->email,
             'image' => $this->image,
-            'phone'=>$this->phone,
+            'phone' => $this->phone,
             'created_at' => $this->created_at->format('m/d/Y'),
             'account_types' => $this->accountTypes->map(function ($accountType) {
                 return [

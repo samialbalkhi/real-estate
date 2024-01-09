@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\ProductRequest;
 use App\Models\Product;
 use App\Service\Backend\ProductService;
+use Illuminate\Http\Response;
 
 class ProductController extends Controller
 {
@@ -21,9 +21,9 @@ class ProductController extends Controller
 
     public function store(ProductRequest $request)
     {
-        $this->productService->store($request);
+        return response()->json(
+            $this->productService->store($request), Response::HTTP_CREATED);
 
-        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(Product $product)
@@ -33,15 +33,13 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        $this->productService->update($request, $product);
+        return response()->json($this->productService->update($request, $product));
 
-        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(Product $product)
     {
-        $this->productService->destroy($product);
+        return response()->json($this->productService->destroy($product));
 
-        return ApiResponse::deleteSuccessResponse();
     }
 }

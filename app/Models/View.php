@@ -1,11 +1,9 @@
 <?php
 
 namespace App\Models;
-use App\Models\User;
-use App\Models\Advertisement;
-use Spatie\Activitylog\LogOptions;
-use Illuminate\Database\Eloquent\Model;
+
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
 
 class View extends Model
 {
@@ -22,6 +20,7 @@ class View extends Model
     {
         return $this->belongsTo(Advertisement::class);
     }
+
     public function activities()
     {
         return $this->morphMany(\Spatie\Activitylog\Models\Activity::class, 'subject');

@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\Frontend\ViewLatestAdvertisementService;
+use Illuminate\Http\Request;
 
 class ViewLatestAdvertisementController extends Controller
 {
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, ViewLatestAdvertisementService $viewLatestAdvertisementService)
+    public function __invoke(ViewLatestAdvertisementService $viewLatestAdvertisementService)
     {
         return response()->json($viewLatestAdvertisementService->viewLatestAdvertisement());
     }

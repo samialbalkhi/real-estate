@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Models\Order;
-use App\helpers\ApiResponse;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Frontend\UserOrderService;
 use App\Http\Requests\Backend\OrderRequest;
+use App\Models\Order;
+use App\Service\Frontend\UserOrderService;
+use Illuminate\Http\Response;
 
 class UserOrderController extends Controller
 {
@@ -27,8 +26,8 @@ class UserOrderController extends Controller
 
     public function store(OrderRequest $request)
     {
-        $this->userOrderService->store($request);
-        return ApiResponse::createSuccessResponse();
+        return response()->json(
+            $this->userOrderService->store($request), Response::HTTP_CREATED);
     }
 
     public function edit(Order $userOrder)
@@ -38,13 +37,11 @@ class UserOrderController extends Controller
 
     public function update(OrderRequest $request, Order $userOrder)
     {
-        $this->userOrderService->update($request, $userOrder);
-        return ApiResponse::updateSuccessResponse();
+        return response()->json($this->userOrderService->update($request, $userOrder));
     }
 
     public function destroy(Order $userOrder)
     {
-        $this->userOrderService->destroy($userOrder);
-        return ApiResponse::deleteSuccessResponse();
+        return response()->json($this->userOrderService->destroy($userOrder));
     }
 }

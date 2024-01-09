@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\RealEstateCategoryRequest;
 use App\Models\RealEstateCategory;
 use App\Service\Backend\RealEstateCategoryService;
+use Illuminate\Http\Response;
 
 class RealEstateCategoryController extends Controller
 {
@@ -21,9 +21,8 @@ class RealEstateCategoryController extends Controller
 
     public function store(RealEstateCategoryRequest $request)
     {
-        $this->realEstateCategoryService->store($request);
-
-        return ApiResponse::createSuccessResponse();
+        return response()->json(
+            $this->realEstateCategoryService->store($request), Response::HTTP_CREATED);
     }
 
     public function edit(RealEstateCategory $realEstateCategory)
@@ -33,15 +32,11 @@ class RealEstateCategoryController extends Controller
 
     public function update(RealEstateCategoryRequest $request, RealEstateCategory $realEstateCategory)
     {
-        $this->realEstateCategoryService->update($request, $realEstateCategory);
-
-        return ApiResponse::updateSuccessResponse();
+        return response()->json($this->realEstateCategoryService->update($request, $realEstateCategory));
     }
 
     public function destroy(RealEstateCategory $realEstateCategory)
     {
-        $this->realEstateCategoryService->destroy($realEstateCategory);
-
-        return ApiResponse::deleteSuccessResponse();
+        return response()->json($this->realEstateCategoryService->destroy($realEstateCategory));
     }
 }

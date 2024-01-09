@@ -2,6 +2,7 @@
 
 namespace App\Service\Backend;
 
+use App\helpers\ApiResponse;
 use App\Http\Requests\Backend\RealEstateCategoryRequest;
 use App\Models\RealEstateCategory;
 
@@ -12,9 +13,11 @@ class RealEstateCategoryService
         return RealEstateCategory::paginate();
     }
 
-    public function store(RealEstateCategoryRequest $request): RealEstateCategory
+    public function store(RealEstateCategoryRequest $request)
     {
-        return RealEstateCategory::create($request->validated());
+        RealEstateCategory::create($request->validated());
+
+        return ApiResponse::createSuccessResponse();
     }
 
     public function edit(RealEstateCategory $realEstateCategory)
@@ -25,10 +28,14 @@ class RealEstateCategoryService
     public function update(RealEstateCategoryRequest $request, RealEstateCategory $realEstateCategory)
     {
         $realEstateCategory->update($request->validated());
+
+        return ApiResponse::updateSuccessResponse();
     }
 
     public function destroy(RealEstateCategory $realEstateCategory)
     {
         $realEstateCategory->delete();
+
+        return ApiResponse::deleteSuccessResponse();
     }
 }

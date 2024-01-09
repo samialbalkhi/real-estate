@@ -2,10 +2,9 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Service\Frontend\ProfileUserService;
 use App\Http\Requests\Backend\UpdateProfileRequest;
+use App\Service\Frontend\ProfileUserService;
 
 class ProfileUserController extends Controller
 {

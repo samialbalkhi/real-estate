@@ -9,6 +9,7 @@ class FinanceCalculator extends Model
 {
     use HasFactory;
     protected $guarded = [];
+
     public function loanTerm()
     {
         return $this->belongsTo(LoanTerm::class);

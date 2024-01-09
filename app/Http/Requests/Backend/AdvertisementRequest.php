@@ -3,9 +3,9 @@
 namespace App\Http\Requests\backend;
 
 use App\helpers\ApiResponse;
-use Illuminate\Http\Request;
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Http\Request;
 
 class AdvertisementRequest extends FormRequest
 {
@@ -42,12 +42,13 @@ class AdvertisementRequest extends FormRequest
             'real_estate_type_id' => ['required'],
             'real_estate_category_id' => ['required'],
             'listOfImage' => ['array', 'required'],
-            'listOfImage.*.image' => ['required','image'],
+            'listOfImage.*.image' => ['required', 'image'],
         ];
 
         if (Request::route()->getName() == 'userAdvertisements.update') {
             unset($rules['listOfImage']);
         }
+
         return $rules;
     }
 

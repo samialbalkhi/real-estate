@@ -2,13 +2,13 @@
 
 namespace App\Service\Frontend;
 
-use App\Models\User;
-use App\Traits\ImageUpload;
 use App\helpers\ApiResponse;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use App\Http\Requests\Backend\UpdateProfileRequest;
 use App\Http\Resources\Frontend\GetProfileUserResource;
+use App\Models\User;
+use App\Traits\ImageUpload;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\ValidationException;
 
 class ProfileUserService
 {
@@ -26,7 +26,7 @@ class ProfileUserService
         $updatedFields = $this->getUpdatedFields($request, $user);
 
         if ($request->filled('old_password')) {
-            if (!$this->checkPassword($user, $request->old_password)) {
+            if (! $this->checkPassword($user, $request->old_password)) {
                 return $this->responseError();
             }
 

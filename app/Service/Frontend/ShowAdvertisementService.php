@@ -1,10 +1,10 @@
 <?php
-namespace App\Service\Frontend;
-use Spatie\Activitylog\Models\Activity;
 
-use App\Models\View;
-use App\Models\Advertisement;
+namespace App\Service\Frontend;
+
 use App\Http\Resources\Frontend\ShowAdvertisementResource;
+use App\Models\Advertisement;
+use App\Models\View;
 
 class ShowAdvertisementService
 {

@@ -1,11 +1,12 @@
 <?php
+
 namespace App\Service\Frontend;
 
-use App\Models\Report;
-use App\helpers\ApiResponse;
 use App\Events\ReportCreated;
+use App\helpers\ApiResponse;
 use App\Http\Requests\Frontend\ReportRequest;
-use App\Listeners\CheckUserReport;
+use App\Models\Report;
+
 class UserReportService
 {
     public function store(ReportRequest $request)
@@ -13,8 +14,8 @@ class UserReportService
         if ($this->existsReport($request)) {
             return $this->existsReportErorr();
         }
-        if ($this->UserExist($request)) {
-            return $this->UserExistErorr();
+        if ($this->userExist($request)) {
+            return $this->userExistError();
         }
 
         $report = Report::create(['user_id' => auth()->user()->id] + $request->validated());
@@ -24,13 +25,21 @@ class UserReportService
         return ApiResponse::createSuccessResponse();
     }
 
+    public function userExistError()
+    {
+        return response()->data(key: 'error',
+            message: 'You cannot report yourself',
+            statusCode: 422);
+    }
+
     private function existsReportErorr()
     {
         return response()->data(key: 'error',
-        message: 'You have already submitted a report for this user.', 
-        statusCode: 422);
+            message: 'You have already submitted a report for this user.',
+            statusCode: 422);
     }
-    private function UserExist($request)
+
+    private function userExist($request)
     {
         return Report::userExist($request->reported_user_id)->exists();
     }
@@ -40,12 +49,5 @@ class UserReportService
         return Report::where('user_id', auth()->user()->id)
             ->where('reported_user_id', $request->reported_user_id)
             ->exists();
-    }
-
-    public function UserExistErorr()
-    {
-        return response()->data(key: 'error', 
-        message: 'You cannot report yourself', 
-        statusCode: 422);
     }
 }

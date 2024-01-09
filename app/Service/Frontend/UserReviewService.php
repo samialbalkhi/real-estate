@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Service\Frontend;
 
 use App\helpers\ApiResponse;
@@ -16,9 +17,9 @@ class UserReviewService
         if ($this->existsUser($request)) {
             return $this->existsUserErorr();
         }
-        
+
         Review::create(['user_id' => auth()->user()->id]
-        +$request->validated());
+        + $request->validated());
 
         return ApiResponse::createSuccessResponse();
     }
@@ -33,8 +34,8 @@ class UserReviewService
     private function existsReatingErorr()
     {
         return response()->data(key: 'error',
-        message: 'You have already submitted a review for this user.',
-        statusCode: 422);
+            message: 'You have already submitted a review for this user.',
+            statusCode: 422);
     }
 
     private function existsUser($request)
@@ -45,8 +46,8 @@ class UserReviewService
     private function existsUserErorr()
     {
         return response()->data(key: 'error',
-        message: 'You cannot evaluate yourself',
-        statusCode: 422);
+            message: 'You cannot evaluate yourself',
+            statusCode: 422);
 
     }
 }

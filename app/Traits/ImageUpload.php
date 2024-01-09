@@ -8,11 +8,11 @@ trait ImageUpload
 {
     public function uploadImage($folder)
     {
-        if (request()->file('image'))
+        if (request()->file('image')) {
             return request()
                 ->file('image')
                 ->store($folder, 'public');
-        
+        }
 
         return null;
     }

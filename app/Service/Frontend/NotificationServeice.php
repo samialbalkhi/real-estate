@@ -1,15 +1,16 @@
 <?php
+
 namespace App\Service\Frontend;
 
-use App\Models\Order;
 use App\Models\Advertisement;
+use App\Models\Order;
 
 class NotificationServeice
 {
     public function store()
     {
-        $advertisements = $this->verify_the_advertisement();
-        $orders = $this->verify_the_order();
+        $advertisements = $this->verifyTheAdvertisement();
+        $orders = $this->verifyTheOrder();
         $notifications = [];
 
         foreach ($orders as $order) {
@@ -27,35 +28,37 @@ class NotificationServeice
         ];
 
     }
-    private function verify_the_order()
+
+    private function verifyTheOrder()
     {
         return Order::with('realEstateType:id,name',
-        'realEstateCategory:id,name', 'user:id,name')->get([
-        'lat', 'lng', 'highest_price', 'lowest_price',
-        'highest_space', 'lowest_space', 'real_estate_type_id', 
-        'real_estate_category_id', 'user_id']);
+            'realEstateCategory:id,name', 'user:id,name')->get([
+                'lat', 'lng', 'highest_price', 'lowest_price',
+                'highest_space', 'lowest_space', 'real_estate_type_id',
+                'real_estate_category_id', 'user_id']);
     }
 
-    private function verify_the_advertisement()
+    private function verifyTheAdvertisement()
     {
         return Advertisement::with('realEstateType:id,name',
-         'realEstateCategory:id,name')->get([
-            'lat', 'lng', 'price', 'space', 
-            'real_estate_type_id', 'real_estate_category_id'
-        ]);
+            'realEstateCategory:id,name')->get([
+                'lat', 'lng', 'price', 'space',
+                'real_estate_type_id', 'real_estate_category_id',
+            ]);
     }
 
     private function advertisementMatchesOrder($advertisement, $order)
     {
-        return $advertisement->lat == $order->lat && 
-        $advertisement->lng == $order->lng && 
-        $advertisement->price <= $order->highest_price && 
-        $advertisement->price >= $order->lowest_price && 
-        $advertisement->space <= $order->highest_space && 
-        $advertisement->space >= $order->lowest_space && 
-        $advertisement->real_estate_type_id == $order->real_estate_type_id && 
+        return $advertisement->lat == $order->lat &&
+        $advertisement->lng == $order->lng &&
+        $advertisement->price <= $order->highest_price &&
+        $advertisement->price >= $order->lowest_price &&
+        $advertisement->space <= $order->highest_space &&
+        $advertisement->space >= $order->lowest_space &&
+        $advertisement->real_estate_type_id == $order->real_estate_type_id &&
         $advertisement->real_estate_category_id == $order->real_estate_category_id;
     }
+
     private function isOwnerAuthenticated($order)
     {
         return auth()->check() && $order->user && auth()->user()->id == $order->user->id;

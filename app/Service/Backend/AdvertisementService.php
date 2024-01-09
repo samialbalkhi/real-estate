@@ -2,6 +2,7 @@
 
 namespace App\Service\Backend;
 
+use App\helpers\ApiResponse;
 use App\Http\Requests\backend\AdvertisementRequest;
 use App\Models\Advertisement;
 
@@ -23,5 +24,8 @@ class AdvertisementService
             'status' => $request->status,
             'featured' => $request->featured,
         ]);
+
+        return ApiResponse::updateSuccessResponse();
+
     }
 }

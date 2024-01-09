@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Backend\HomePageContentRequest;
 use App\Models\HomePageContent;
@@ -23,9 +22,8 @@ class HomePageContentController extends Controller
 
     public function update(HomePageContentRequest $request, HomePageContent $homePageContent)
     {
-        $this->homePageContentService->update($request, $homePageContent);
-
-        return ApiResponse::updateSuccessResponse();
+        return response()->json(
+            $this->homePageContentService->update($request, $homePageContent));
 
     }
 }

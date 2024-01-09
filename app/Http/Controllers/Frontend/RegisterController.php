@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Frontend\RegisterRequest;
 use App\Service\Frontend\RegisterService;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 
 class RegisterController extends Controller
 {
@@ -14,6 +15,6 @@ class RegisterController extends Controller
      */
     public function __invoke(RegisterRequest $request, RegisterService $registerService)
     {
-        return response()->json($registerService->store($request));
+        return response()->json($registerService->store($request), Response::HTTP_CREATED);
     }
 }

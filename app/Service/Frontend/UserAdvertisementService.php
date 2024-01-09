@@ -2,17 +2,17 @@
 
 namespace App\Service\Frontend;
 
-use App\Traits\ImageUpload;
 use App\helpers\ApiResponse;
-use App\Models\Advertisement;
-use App\Models\AdvertisingPicture;
 use App\Http\Requests\backend\AdvertisementRequest;
-use App\Http\Resources\Frontend\UserAdvertisement\ShowResource;
 use App\Http\Resources\Frontend\UserAdvertisement\IndexResource;
+use App\Http\Resources\Frontend\UserAdvertisement\ShowResource;
+use App\Models\Advertisement;
+use App\Traits\ImageUpload;
 
 class UserAdvertisementService
 {
     use ImageUpload;
+
     public function index()
     {
         return $this->advertisementsPaginate();
@@ -60,8 +60,9 @@ class UserAdvertisementService
 
     public function destroy(Advertisement $userAdvertisement)
     {
-         $userAdvertisement->delete();
-         return ApiResponse::deleteSuccessResponse();
+        $userAdvertisement->delete();
+
+        return ApiResponse::deleteSuccessResponse();
 
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Service\Backend;
 
+use App\helpers\ApiResponse;
 use App\Http\Requests\Backend\HomePageContentRequest;
 use App\Models\HomePageContent;
 use App\Traits\ImageUpload;
@@ -23,5 +24,8 @@ class HomePageContentService
             'image' => $this->uploadImage('home_page_image'),
         ]
             + $request->validated());
+
+        return ApiResponse::updateSuccessResponse();
+
     }
 }

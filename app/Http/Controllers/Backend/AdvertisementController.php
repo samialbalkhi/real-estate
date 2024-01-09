@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\helpers\ApiResponse;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\backend\AdvertisementRequest;
 use App\Models\Advertisement;
@@ -26,8 +25,7 @@ class AdvertisementController extends Controller
 
     public function update(AdvertisementRequest $request, Advertisement $advertisement)
     {
-        $this->advertisementService->update($request, $advertisement);
+        return response()->json($this->advertisementService->update($request, $advertisement));
 
-        return ApiResponse::updateSuccessResponse();
     }
 }

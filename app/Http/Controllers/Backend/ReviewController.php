@@ -11,9 +11,8 @@ class ReviewController extends Controller
     /**
      * Handle the incoming request.
      */
-    public function __invoke(Request $request, ReviewService $reviewService)
+    public function __invoke(ReviewService $reviewService)
     {
-
         return response()->json($reviewService->index());
     }
 }

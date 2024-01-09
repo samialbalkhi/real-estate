@@ -5,7 +5,6 @@ namespace App\helpers;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Response;
 
 class ApiResponse
 {
@@ -21,17 +20,17 @@ class ApiResponse
 
     public static function createSuccessResponse($message = 'create successfully')
     {
-        return response()->json(['message' => $message], Response::HTTP_CREATED);
+        return ['message' => $message];
     }
 
     public static function logoutSuccessResponse($message = 'logout successfully')
     {
-        return response()->json(['message' => $message], 200);
+        return ['message' => $message];
     }
 
     public static function resetPsswordSuccessResponse($message = 'Password reset successfully')
     {
-        return response()->json(['message' => $message], 200);
+        return ['message' => $message];
     }
 
     public static function failedValidation(Validator $validator)
