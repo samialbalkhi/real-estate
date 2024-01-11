@@ -44,4 +44,5 @@ class Advertisement extends Model
     {
         return $query->whereStatus(true);
     }
+    
 }

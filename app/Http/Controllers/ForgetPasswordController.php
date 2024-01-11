@@ -13,11 +13,7 @@ class ForgetPasswordController extends Controller
 
     public function forgotPassword(ForgetPasswordRequest $request)
     {
-        return response()->json($this->forgetPasswordService->forgotPassword($request));
-    }
-
-    public function showResetForm(string $token)
-    {
-        return response()->json($this->forgetPasswordService->showResetForm($token));
+        $this->forgetPasswordService->forgotPassword($request);
+        return response()->json(['message' => 'send email code successfully']);
     }
 }

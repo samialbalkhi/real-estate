@@ -20,8 +20,7 @@ use App\Http\Controllers\ResetPasswordController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {});
 
 Route::post('login', AuthAdminController::class);
 
@@ -60,21 +59,12 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::get('orderCount', OrderCountController::class);
     Route::get('advertisementCount', AdvertisementCountController::class);
 
-    Route::get('userCount', UserCountController::class);
-    Route::get('orderCount', OrderCountController::class);
-    Route::get('advertisementCount', AdvertisementCountController::class);
-
     Route::get('getProfile', [ProfileAdminController::class, 'getProfile']);
     Route::post('profileAdmin', [ProfileAdminController::class, 'profileAdmin']);
     Route::get('logout', [ProfileAdminController::class, 'logout']);
 });
 
-Route::post('forgot-password', [ForgetPasswordController::class, 'forgotPassword'])->middleware('guest');
+Route::post('forgot-password', [ForgetPasswordController::class, 'forgotPassword']);
 
-Route::get('reset-password/{token}', [ForgetPasswordController::class, 'showResetForm'])
-    ->middleware('guest')
-    ->name('password.reset');
-
-Route::post('reset-password', [ResetPasswordController::class, 'resetPassword'])
-    ->middleware('guest')
-    ->name('password.update');
+Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
+    

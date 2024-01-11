@@ -21,6 +21,16 @@ class Kernel extends ConsoleKernel
                     ->delete();
             })
             ->everyMinute();
+
+
+            $schedule
+            ->call(function () {
+                info(now());
+                DB::table('reset_passwords')
+                    ->where('created_at', '<', now()->subSeconds(60))
+                    ->delete();
+            })
+            ->everyMinute();
     }
 
     /**
