@@ -77,7 +77,7 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
 
     Route::get('viewLatestAdvertisement', ViewLatestAdvertisementController::class);
 
-    Route::get('getSimilarAdvertisement/{advertisement}', GetSimilarAdvertisementController::class);
+    Route::get('getSimilarAdvertisement', GetSimilarAdvertisementController::class);
 
     Route::post('rating', UserReviewController::class);
 

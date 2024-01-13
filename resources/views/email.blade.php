@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-@csrf
 <body>
     <h1>{{ $data['code'] }}</h1>
 </body>
