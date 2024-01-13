@@ -24,7 +24,6 @@ class UserAdvertisementService
         unset($validatedData['listOfImage']);
         $AdvertisementID = Advertisement::create(
             [
-                'user_id' => auth()->user()->id,
                 'featured' => false,
                 'status' => false,
             ] + $validatedData,

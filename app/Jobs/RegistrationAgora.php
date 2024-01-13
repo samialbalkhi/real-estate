@@ -4,13 +4,11 @@ namespace App\Jobs;
 
 use GuzzleHttp\Client;
 use Illuminate\Bus\Queueable;
-use PHPUnit\Event\Code\Throwable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use PHPUnit\Event\Code\Throwable;
 
 class RegistrationAgora implements ShouldQueue
 {
@@ -20,6 +18,7 @@ class RegistrationAgora implements ShouldQueue
      * Create a new job instance.
      */
     protected $user;
+
     public function __construct($user)
     {
         $this->user = $user;
@@ -37,7 +36,7 @@ class RegistrationAgora implements ShouldQueue
         $agoraAppName = '1264508';
         $agoraApiUrl = "https://{$agoraRsetApi}/{$agoraOrgName}/{$agoraAppName}/users";
 
-        $client = new Client();
+        $client = new Client;
 
         $response = $client->post($agoraApiUrl, [
             'headers' => [
@@ -57,6 +56,7 @@ class RegistrationAgora implements ShouldQueue
         $agora_data = ['agora_data' => json_decode($response->getBody(), true)];
 
     }
+
     public function failed(Throwable $e)
     {
         info('Something went wrong');

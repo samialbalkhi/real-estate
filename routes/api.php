@@ -1,26 +1,30 @@
 <?php
-
-use App\Http\Controllers\Backend\AccountTypeController;
-use App\Http\Controllers\Backend\AdvertisementController;
-use App\Http\Controllers\Backend\AdvertisementCountController;
-use App\Http\Controllers\Backend\AuthAdminController;
-use App\Http\Controllers\Backend\HomePageContentController;
-use App\Http\Controllers\Backend\OfferController;
-use App\Http\Controllers\Backend\OrderController;
-use App\Http\Controllers\Backend\OrderCountController;
-use App\Http\Controllers\Backend\ProductController;
-use App\Http\Controllers\Backend\ProfileAdminController;
-use App\Http\Controllers\Backend\RealEstateCategoryController;
-use App\Http\Controllers\Backend\RealEstateTypeController;
-use App\Http\Controllers\Backend\ReportController;
-use App\Http\Controllers\Backend\ReviewController;
-use App\Http\Controllers\Backend\UserCountController;
-use App\Http\Controllers\ForgetPasswordController;
-use App\Http\Controllers\ResetPasswordController;
+use App\Http\Controllers\Backend\{
+    AccountTypeController,
+    AdvertisementController,
+    AdvertisementCountController,
+    AuthAdminController,
+    HomePageContentController,
+    OfferController,
+    OrderController,
+    OrderCountController,
+    ProductController,
+    ProfileAdminController,
+    RealEstateCategoryController,
+    RealEstateTypeController,
+    ReportController,
+    ReviewController,
+    UserCountController,
+};
+use App\Http\Controllers\ForgetPassword\{
+    ForgetPasswordController,
+    ResetPasswordController,
+};
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {});
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+});
 
 Route::post('login', AuthAdminController::class);
 
@@ -64,7 +68,6 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () 
     Route::get('logout', [ProfileAdminController::class, 'logout']);
 });
 
-Route::post('forgot-password', [ForgetPasswordController::class, 'forgotPassword']);
+Route::post('forgot-password', ForgetPasswordController::class);
 
-Route::post('reset-password', [ResetPasswordController::class, 'resetPassword']);
-    
+Route::post('reset-password', ResetPasswordController::class);

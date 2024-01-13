@@ -17,7 +17,7 @@ class AdvertisementService
     {
         return $advertisement;
     }
-        
+
     public function update(AdvertisementRequest $request, Advertisement $advertisement)
     {
         $advertisement->update([

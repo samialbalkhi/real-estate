@@ -22,8 +22,7 @@ class Kernel extends ConsoleKernel
             })
             ->everyMinute();
 
-
-            $schedule
+        $schedule
             ->call(function () {
                 info(now());
                 DB::table('reset_passwords')

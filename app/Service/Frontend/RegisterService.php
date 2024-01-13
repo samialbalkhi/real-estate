@@ -2,12 +2,11 @@
 
 namespace App\Service\Frontend;
 
-use App\Models\User;
-use GuzzleHttp\Client;
-use App\Traits\ImageUpload;
 use App\helpers\ApiResponse;
-use App\Jobs\RegistrationAgora;
 use App\Http\Requests\Frontend\RegisterRequest;
+use App\Jobs\RegistrationAgora;
+use App\Models\User;
+use App\Traits\ImageUpload;
 
 class RegisterService
 {
@@ -22,6 +21,7 @@ class RegisterService
         );
 
         RegistrationAgora::dispatch($user);
+
         return ApiResponse::createSuccessResponse();
     }
 }

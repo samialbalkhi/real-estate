@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class ResetPassword extends Model
 {
     use HasFactory;
-    protected $fillable =['code','created_at','updated_at'];
+    protected $fillable = ['code', 'created_at', 'updated_at'];
 }

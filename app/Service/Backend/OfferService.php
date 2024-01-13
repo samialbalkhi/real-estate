@@ -41,7 +41,7 @@ class OfferService
                 'image' => $this->uploadImage('image_offer'),
             ] + $request->validated(),
         );
-        
+
         return ApiResponse::updateSuccessResponse();
     }
 

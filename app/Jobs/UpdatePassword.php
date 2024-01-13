@@ -4,13 +4,12 @@ namespace App\Jobs;
 
 use App\Mail\ForgetPassword;
 use Illuminate\Bus\Queueable;
-use PHPUnit\Event\Code\Throwable;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
+use PHPUnit\Event\Code\Throwable;
 
 class UpdatePassword implements ShouldQueue
 {
@@ -38,7 +37,7 @@ class UpdatePassword implements ShouldQueue
         ];
         Mail::to($this->email)->send(new ForgetPassword($data));
     }
-    
+
     public function failed(Throwable $e)
     {
         info('Email was not sent');

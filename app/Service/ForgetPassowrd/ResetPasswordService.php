@@ -6,9 +6,6 @@ use App\helpers\ApiResponse;
 use App\Http\Requests\ResetPasswordRequest;
 use App\Models\ResetPassword;
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Str;
 
 class ResetPasswordService
 {
@@ -16,13 +13,13 @@ class ResetPasswordService
     {
         $code = ResetPassword::where('code', $request->code)->first();
 
-        if (!$code == $request->code) {
+        if (! $code == $request->code) {
             return 'Unfortunately, the code is invalid !!';
         }
 
         $user = User::whereEmail($request->email)->first();
         $user->update([
-            'password' => $request->password
+            'password' => $request->password,
         ]);
 
         return ApiResponse::updateSuccessResponse();

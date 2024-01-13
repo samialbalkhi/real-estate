@@ -45,7 +45,7 @@ class ShowAdvertisementResource extends JsonResource
                     'image' => $advertisingPictures->image,
                 ];
             }),
-            'views_count' => $this->views()->count(),
+            'viewsCount' => $this->views()->count(),
         ];
     }
 }

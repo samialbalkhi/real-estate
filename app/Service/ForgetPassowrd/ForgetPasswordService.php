@@ -2,9 +2,9 @@
 
 namespace App\Service\ForgetPassowrd;
 
+use App\Http\Requests\ForgetPasswordRequest;
 use App\Jobs\UpdatePassword;
 use App\Models\ResetPassword;
-use App\Http\Requests\ForgetPasswordRequest;
 
 class ForgetPasswordService
 {

@@ -1,29 +1,32 @@
 <?php
-
-use App\Http\Controllers\Frontend\AuthUserController;
-use App\Http\Controllers\Frontend\FeaturedAdvertisementController;
-use App\Http\Controllers\Frontend\FinanceCalculatorController;
-use App\Http\Controllers\Frontend\GetSimilarAdvertisementController;
-use App\Http\Controllers\Frontend\NotificationController;
-use App\Http\Controllers\Frontend\ProfileUserController;
-use App\Http\Controllers\Frontend\RegisterController;
-use App\Http\Controllers\Frontend\SendVerificationEmailController;
-use App\Http\Controllers\Frontend\ShowAdvertisementController;
-use App\Http\Controllers\Frontend\ShowProductController;
-use App\Http\Controllers\Frontend\UserAdvertisementController;
-use App\Http\Controllers\Frontend\UserOrderController;
-use App\Http\Controllers\Frontend\UserReportController;
-use App\Http\Controllers\Frontend\UserReviewController;
-use App\Http\Controllers\Frontend\VerifyCodeController;
-use App\Http\Controllers\Frontend\ViewAdvertisementController;
-use App\Http\Controllers\Frontend\ViewAllAdvertisementController;
-use App\Http\Controllers\Frontend\ViewCategoryController;
-use App\Http\Controllers\Frontend\ViewHomepageController;
-use App\Http\Controllers\Frontend\ViewLatestAdvertisementController;
-use App\Http\Controllers\Frontend\ViewOfferController;
-use App\Http\Controllers\Frontend\ViewProductController;
-use App\Http\Controllers\Frontend\WishlistController;
 use Illuminate\Support\Facades\Route;
+
+use App\Http\Controllers\Frontend\{
+    AuthUserController,
+    FeaturedAdvertisementController,
+    FinanceCalculatorController, 
+    NotificationController, 
+    ProfileUserController, 
+    RegisterController, 
+    SendVerificationEmailController, 
+    ShowAdvertisementController, 
+    ShowProductController, 
+    UserAdvertisementController, 
+    UserOrderController, 
+    UserReportController, 
+    UserReviewController, 
+    VerifyCodeController, 
+    ViewAdvertisementController, 
+    ViewAllAdvertisementController,
+     ViewCategoryController, 
+     ViewHomepageController, 
+     ViewLatestAdvertisementController, 
+     ViewOfferController, 
+     ViewProductController, 
+     WishlistController,
+     AdvertisingPictureController,
+
+    };
 
 Route::prefix('user')->group(function () {
     Route::post('login', AuthUserController::class);
@@ -77,8 +80,6 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
 
     Route::get('viewLatestAdvertisement', ViewLatestAdvertisementController::class);
 
-    Route::get('getSimilarAdvertisement', GetSimilarAdvertisementController::class);
-
     Route::post('rating', UserReviewController::class);
 
     Route::post('report', UserReportController::class);
@@ -90,4 +91,6 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
     Route::get('logoutUser', [ProfileUserController::class, 'logoutUser']);
 
     Route::get('notifications', NotificationController::class);
+
+    Route::resource('advertisingPicture', AdvertisingPictureController::class);
 });

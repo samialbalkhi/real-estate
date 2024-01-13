@@ -1,13 +1,12 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Frontend;
 
 use App\helpers\ApiResponse;
-use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Validation\Rules\Password as RulesPassword;
+use Illuminate\Contracts\Validation\Validator;
 
-class ResetPasswordRequest extends FormRequest
+class AdvertisingPictureRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,15 +24,11 @@ class ResetPasswordRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'code' => ['required'],
-            'email' => ['required', 'email'],
-            'password' => ['required', 'confirmed', RulesPassword::defaults()],
+            'image' => ['required', 'image'],
         ];
     }
-
     public function failedValidation(Validator $validator)
     {
         return ApiResponse::failedValidation($validator);
-
     }
 }
