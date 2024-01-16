@@ -29,16 +29,15 @@ class AdvertisementFactory extends Factory
             'number_of_people' => rand(1, 5),
             'age_of_real_estate' => $this->faker->date(),
             'rental_period' => 'years',
-            'lat' => '40.731',
-            'lng' => '-73.997',
+            'lat' => rand(40.731, 20.731),
+            'lng' => rand(40.731, 20.731),
             'price' => $this->faker->numberBetween(1000, 2000),
             'space' => $this->faker->numberBetween(100, 2000),
-            'status' => false,
-            'featured' => false,
+            'status' => rand(false, true),
+            'featured' => rand(false, true),
             'real_estate_type_id' => rand(1, 2),
             'user_id' => rand(1, 10),
             'real_estate_category_id' => rand(1, 10),
-
         ];
     }
 }

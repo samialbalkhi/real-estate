@@ -61,7 +61,7 @@ class NotificationServeice
 
     private function isOwnerAuthenticated($order)
     {
-        return auth()->check() && $order->user && auth()->user()->id == $order->user->id;
+        return auth()->check() && $order->user && auth()->id() == $order->user->id;
     }
 
     private function sendNotificationToOwner($user, $message)

@@ -20,7 +20,7 @@ class SendVerificationEmailService
 
         ValidationCode::create([
             'code' => $code,
-            'user_id' => auth()->user()->id,
+            'user_id' => auth()->id(),
             'created_at' => now(),
         ]);
 

@@ -17,7 +17,7 @@ class ProfileAdminService
     public function getProfile()
     {
         return new GetProfileAdminResource(
-            User::find(auth()->user()->id)
+            User::find(auth()->id())
         );
     }
 

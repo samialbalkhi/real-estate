@@ -20,11 +20,11 @@ class AccountTypeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->unique()->name(),
+            'name' => fake()
+                ->unique()
+                ->name(),
             'image' => 'C:/Users/User/Pictures/، 𝔭𝔧𝔪𝔠𝔞𝔣𝔢.jpg',
             'status' => rand(true, false),
-            'user_id' => rand(1, 10),
-
         ];
     }
 }

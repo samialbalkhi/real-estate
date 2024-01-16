@@ -18,7 +18,7 @@ class UserReviewService
             return $this->existsUserErorr();
         }
 
-        Review::create(['user_id' => auth()->user()->id]
+        Review::create(['user_id' => auth()->id()]
         + $request->validated());
 
         return ApiResponse::createSuccessResponse();
@@ -26,7 +26,7 @@ class UserReviewService
 
     private function existsReating($request)
     {
-        return Review::where('user_id', auth()->user()->id)
+        return Review::where('user_id', auth()->id())
             ->where('rated_user_id', $request->rated_user_id)
             ->exists();
     }

@@ -16,7 +16,7 @@ class ProfileUserService
 
     public function getProfileUser()
     {
-        return new GetProfileUserResource(User::find(auth()->user()->id));
+        return new GetProfileUserResource(User::find(auth()->id()));
     }
 
     public function profileUser(UpdateProfileRequest $request)
@@ -57,7 +57,10 @@ class ProfileUserService
 
     private function responseSuccess()
     {
-        return response()->data(key: 'success', message: 'update profile sucessfully', statusCode: 200);
+        return response()->data(
+        key: 'success',
+        message: 'update profile sucessfully',
+        statusCode: 200);
     }
 
     private function checkPassword($admin, $old_password)

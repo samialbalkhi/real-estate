@@ -25,6 +25,8 @@ use App\Http\Controllers\Frontend\{
      ViewProductController, 
      WishlistController,
      AdvertisingPictureController,
+     UserAccountTypeController,
+
 
     };
 
@@ -93,4 +95,11 @@ Route::group(['middleware' => ['auth:sanctum', 'abilities:user']], function () {
     Route::get('notifications', NotificationController::class);
 
     Route::resource('advertisingPicture', AdvertisingPictureController::class);
+
+
+    Route::prefix('userAccountType')->group(function () {
+    Route::get('index',[UserAccountTypeController::class, 'index']);
+    Route::post('store',[UserAccountTypeController::class, 'store']);
+    
+    });
 });

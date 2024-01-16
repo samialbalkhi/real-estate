@@ -26,6 +26,7 @@ class UserAdvertisementService
             [
                 'featured' => false,
                 'status' => false,
+                'user_id'=>auth()->id ,
             ] + $validatedData,
         );
 
@@ -48,7 +49,7 @@ class UserAdvertisementService
     {
         $userAdvertisement->update(
             [
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->id(),
                 'featured' => false,
                 'status' => false,
             ] + $request->validated(),
@@ -68,7 +69,7 @@ class UserAdvertisementService
     private function advertisementsPaginate()
     {
         $advertisements = Advertisement::Active()
-            ->where('user_id', auth()->user()->id)
+            ->where('user_id', auth()->id())
             ->paginate(10);
 
         return [

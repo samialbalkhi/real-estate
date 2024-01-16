@@ -18,7 +18,7 @@ class UserReportService
             return $this->userExistError();
         }
 
-        $report = Report::create(['user_id' => auth()->user()->id] + $request->validated());
+        $report = Report::create(['user_id' => auth()->id()] + $request->validated());
 
         ReportCreated::dispatch($report);
 
@@ -46,7 +46,7 @@ class UserReportService
 
     private function existsReport($request)
     {
-        return Report::where('user_id', auth()->user()->id)
+        return Report::where('user_id', auth()->id())
             ->where('reported_user_id', $request->reported_user_id)
             ->exists();
     }

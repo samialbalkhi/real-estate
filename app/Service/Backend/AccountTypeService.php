@@ -21,7 +21,6 @@ class AccountTypeService
         AccountType::create(
             [
                 'image' => $this->uploadImage('account_type'),
-                'user_id' => auth()->user()->id,
             ] + $request->validated(),
         );
 
@@ -40,7 +39,6 @@ class AccountTypeService
         $accountType->update(
             [
                 'image' => $this->uploadImage('account_type'),
-                'user_id' => auth()->user()->id,
             ] + $request->validated(),
         );
 

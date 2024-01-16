@@ -14,6 +14,10 @@ class GetProfileUserResource extends JsonResource
      */
     public function toArray(Request $request): array
     {
+        $totalReviews = $this->reviews->count();
+        $totalRating = $this->reviews->sum('rating');
+
+        $averageRating = $totalReviews > 0 ? $totalRating / $totalReviews : 0;
         return [
             'id' => $this->id,
             'name' => $this->name,
@@ -21,11 +25,14 @@ class GetProfileUserResource extends JsonResource
             'image' => $this->image,
             'phone' => $this->phone,
             'created_at' => $this->created_at->format('m/d/Y'),
-            'accountTypes' => $this->accountTypes->map(function ($accountType) {
+            'userAccountTypes' => $this->userAccountTypes->map(function ($userAccountType) {
                 return [
-                    'name' => $accountType->name,
+                    'account_type' => [
+                        'name' => $userAccountType->accountType->name,
+                    ],
                 ];
             }),
+            'averageRating' => $averageRating,
         ];
     }
 }

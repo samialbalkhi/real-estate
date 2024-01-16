@@ -21,11 +21,6 @@ class GetProfileAdminResource extends JsonResource
             'image' => $this->image,
             'phone' => $this->phone,
             'created_at' => $this->created_at->format('m/d/Y'),
-            'accountTypes' => $this->accountTypes->map(function ($accountType) {
-                return [
-                    'name' => $accountType->name,
-                ];
-            }),
         ];
     }
 }

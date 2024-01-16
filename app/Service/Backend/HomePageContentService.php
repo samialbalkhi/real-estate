@@ -13,7 +13,7 @@ class HomePageContentService
 
     public function edit(HomePageContent $homePageContent)
     {
-        return $homePageContent;
+        return $homePageContent->only('id','description','image');
     }
 
     public function update(HomePageContentRequest $request, HomePageContent $homePageContent)

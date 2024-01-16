@@ -29,8 +29,11 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::post('login', AuthAdminController::class);
 
 Route::group(['middleware' => ['auth:sanctum', 'abilities:admin']], function () {
+
+    Route::prefix('homePageContent')->group(function () {
     Route::get('edit/{homePageContent}', [HomePageContentController::class, 'edit']);
     Route::post('update/{homePageContent}', [HomePageContentController::class, 'update']);
+});
 
     Route::resource('accountTypes', AccountTypeController::class);
     Route::resource('realEstateCategories', RealEstateCategoryController::class);

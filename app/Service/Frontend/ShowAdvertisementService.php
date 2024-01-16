@@ -29,7 +29,7 @@ class ShowAdvertisementService
     {
         $view = View::updateOrCreate(
             [
-                'user_id' => auth()->user()->id,
+                'user_id' => auth()->id(),
                 'advertisement_id' => $advertisement->id,
             ],
             [],
@@ -40,7 +40,7 @@ class ShowAdvertisementService
 
     private function getReferenceAdvertisements()
     {
-        $activities = Activity::where('causer_id', auth()->user()->id)
+        $activities = Activity::where('causer_id', auth()->id)
             ->where('causer_type', get_class(auth()->user()))
             ->where('subject_type', Advertisement::class)
             ->get();
