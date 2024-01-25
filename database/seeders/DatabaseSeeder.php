@@ -33,6 +33,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@gmail.com',
             'password' => 'password',
             'phone' => '123',
+            'status' => true,
         ]);
 
         User::factory()->create([
@@ -40,6 +41,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@gmail.com',
             'password' => 'password',
             'phone' => '123213312',
+            'status' => true,
         ]);
 
         HomePageContent::factory(1)->create();

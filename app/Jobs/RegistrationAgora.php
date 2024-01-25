@@ -29,11 +29,11 @@ class RegistrationAgora implements ShouldQueue
      */
     public function handle(): void
     {
-        $agoraAppId = '7b99b46b4fbb4fc183a73d0c4ed33054';
-        $agoraAppCertificate = 'e5018477219141c3ad7bd21c493a863c';
-        $agoraRsetApi = 'a71.chat.agora.io';
-        $agoraOrgName = '711084304';
-        $agoraAppName = '1264508';
+        $agoraAppId = '7b66926d1d9e44c59e0af55ec061b500';
+        $agoraAppCertificate = '236ecf1cac8347c78e697e2285e861cd';
+        $agoraRsetApi = 'a61.chat.agora.io';
+        $agoraOrgName = '611081744';
+        $agoraAppName = '1261637';
         $agoraApiUrl = "https://{$agoraRsetApi}/{$agoraOrgName}/{$agoraAppName}/users";
 
         $client = new Client;
