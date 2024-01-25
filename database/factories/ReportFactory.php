@@ -21,7 +21,7 @@ class ReportFactory extends Factory
     {
         return [
             'reason' => $this->faker->paragraph(),
-            'user_id' => 21,
+            'user_id' => 1,
             'reported_user_id' => rand(1, 20),
         ];
     }

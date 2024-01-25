@@ -26,7 +26,7 @@ use App\Http\Controllers\Frontend\{
      WishlistController,
      AdvertisingPictureController,
      UserAccountTypeController,
-
+     SendBlockingMessageController,
 
     };
 

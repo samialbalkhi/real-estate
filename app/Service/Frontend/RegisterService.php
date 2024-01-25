@@ -17,6 +17,7 @@ class RegisterService
         $user = User::create(
             [
                 'image' => $this->uploadImage('user_image'),
+                'status' => true
             ] + $request->validated(),
         );
 

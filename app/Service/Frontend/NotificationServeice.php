@@ -23,7 +23,6 @@ class NotificationServeice
         }
 
         return [
-            'message' => 'Request processed successfully',
             'notifications' => $notifications,
         ];
 
@@ -69,5 +68,5 @@ class NotificationServeice
         if ($this->isOwnerAuthenticated($user)) {
             notify()->success($message);
         }
-    }
+    }   
 }
