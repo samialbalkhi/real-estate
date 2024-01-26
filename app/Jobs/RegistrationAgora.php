@@ -42,7 +42,7 @@ class RegistrationAgora implements ShouldQueue
             'headers' => [
                 'Content-Type' => 'application/json',
                 'Accept' => 'application/json',
-                'Authorization' => 'Bearer ' . '007eJxTYEg4PFNeyLxN5HLnyhaNzey9IXNXfnj1lqnipsZeyUVPxDoVGMyTLC2TTMySTNKSgDjZ0MI40dw4xSDZJDXF2NjA1MRn57zUhkBGhuXRbKyMDKwMjAxMDCA+AwMAh/cdfg==',
+                'Authorization' => 'Bearer ' . '007eJxTYLB/vXW3Wo6nvvytm1Pn1i3v7nbJX11Q9k7YSt1KpnarZosCg3mSmZmlkVmKYYplqolJsqllqkFimqlparKBmWGSqYGB8LdNqQ2BjAyPlzxgZmRgZWBkYGIA8RkYAGyVHcg=',
             ],
             'json' => [
                 'username' => (string) $this->user->id,
